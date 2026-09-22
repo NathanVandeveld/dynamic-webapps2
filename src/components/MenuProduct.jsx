@@ -1,6 +1,6 @@
 export function MenuProduct(props) {
-    const {productName} = props;
+    const {productName,productPrice} = props;
     return (
-        <div>{productName}</div>
+        <div>{productName} {productPrice} €</div>
     );
 }
