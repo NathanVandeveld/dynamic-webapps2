@@ -1,5 +1,6 @@
+import "modern-normalize";
 import './App.css';
-import 'node_modules/modern-normalize/modern-normalize.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {MenuCard} from "./components/MenuCard.jsx";
 import {PRODUCTS_DATA} from "./data/data.jsx";
 
