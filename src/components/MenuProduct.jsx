@@ -1,7 +1,29 @@
+import {Row, Col} from "react-bootstrap";
+
 export function MenuProduct(props) {
     const {product} = props;
-    const size = product.size &&`(${product.size}cl)`;
+    if (!product?.name) return null;
+
     return (
-        <div>{product.name}{size} --  {product.price.toFixed(2)} &euro;</div>
+        <Row className="fs-5 gx-0">
+            <Col>
+                {product.name}
+                <ProductSize product={product}/>
+            </Col>
+            <Col xs="auto" className="text-end">
+                {product.price.toFixed(2)} &euro;
+            </Col>
+        </Row>
+    );
+}
+
+function ProductSize(props) {
+    const {product} = props;
+    if (!product?.size) return null;
+
+    return (
+        <span className="text-primary ms-1">
+            ({product.size}cl)
+        </span>
     );
 }

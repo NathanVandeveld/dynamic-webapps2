@@ -1,11 +1,14 @@
+import {Card} from "react-bootstrap";
 import {MenuProduct} from "./MenuProduct.jsx";
 
 export function MenuCard(props) {
     const {products} = props;
-    return (<div>
-        <h1>Menu</h1>
-        {products.map(product =><MenuProduct key={product.id} product={product}/>) }
-
-
-    </div>);
+    return (
+        <Card className="shadow mx-auto my-4" style={{maxWidth: "600px"}}>
+            <Card.Body className="px-4 pb-5">
+                <Card.Title as="h1">Menu</Card.Title>
+                {products.map(product => <MenuProduct key={product.id} product={product}/>)}
+            </Card.Body>
+        </Card>
+    );
 }
