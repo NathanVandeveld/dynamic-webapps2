@@ -3,7 +3,7 @@ import {Card, Col, Row} from "react-bootstrap";
 export function Person(props) {
     const {person} = props;
     return (
-        <Card>
+        <Card className="text-center">
             <Card.Body>
                 <Card.Title>{person.name}</Card.Title>
                 <Card.Text>
@@ -20,7 +20,7 @@ export function Person(props) {
 export function Persons(props) {
     const {persons, title} = props;
     return (
-        <Card>
+        <Card className="text-center">
             <Card.Header>
                 <h3>{title}</h3>
             </Card.Header>
