@@ -1,14 +1,24 @@
+import {useState} from "react";
 import "modern-normalize";
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {MenuCard} from "./components/MenuCard.jsx";
-import {PRODUCTS_DATA} from "./data/data.jsx";
+import './App.css';
+import {PageRouter} from "./components/navigation/PageRouter.jsx";
+import {SandboxNavBar} from "./components/navigation/SandboxNavBar.jsx";
+import {NAV_EXERCISES} from "./constants/navConstants.js";
 
 function App() {
+    const [activeNavBarItem, setActiveNavBarItem] = useState(NAV_EXERCISES);
 
     return (
         <>
-            <MenuCard products={PRODUCTS_DATA}/>
+            <SandboxNavBar
+                activeNavBarItem={activeNavBarItem}
+                onSelectNavBarItem={setActiveNavBarItem}
+            />
+            <PageRouter
+                activeNavBarItem={activeNavBarItem}
+                onSelectNavBarItem={setActiveNavBarItem}
+            />
         </>
     );
 }
