@@ -1,6 +1,6 @@
 import {Container} from "react-bootstrap";
 import {MenuCard} from "../components/MenuCard.jsx";
-import {PRODUCTS_DATA} from "../data/data.js";
+import {PRODUCTS_DATA} from "../data/data.jsx";
 
 export function MenuCardPage() {
     return (

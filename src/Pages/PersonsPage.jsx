@@ -1,9 +1,11 @@
 import {Container} from "react-bootstrap";
+import {Persons} from "../components/exercises/Persons.jsx";
+import {PERSON_DATA} from "../data/data.jsx";
 
 export function PersonsPage() {
     return (
-        <Container className="mt-3">
-            <h1>Personen</h1>
-        </Container>
+
+            <Persons persons={PERSON_DATA} title="Personen" />
+
     );
 }
