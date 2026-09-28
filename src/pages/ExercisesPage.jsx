@@ -1,5 +1,6 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import {NAV_MENU, NAV_PERSONS} from "../constants/navConstants.js";
+import {RENDER_DATA_EXERCISES} from "../constants/exercisesConstants.js";
 
 function OpenExerciseButton(props) {
     const {onClick} = props;
@@ -37,20 +38,16 @@ export function ExercisesPage(props) {
     return (
         <Container className="my-4">
             <Row xs={1} md={2} className="g-3">
-                <Col>
+                {RENDER_DATA_EXERCISES.map(e=>(
+
+                <Col key={e.key}>
                     <ExerciseCard
-                        title="Menukaart"
-                        description="Menukaart met data uit data.js"
-                        onSelect={() => onSelectExercise(NAV_MENU)}
+                        title={e.title}
+                        description={e.description}
+                        onSelect={() => onSelectExercise(e.key)}
                     />
                 </Col>
-                <Col>
-                    <ExerciseCard
-                        title="Personen"
-                        description="Lijst met personen"
-                        onSelect={() => onSelectExercise(NAV_PERSONS)}
-                    />
-                </Col>
+                ))}
             </Row>
         </Container>
     );
