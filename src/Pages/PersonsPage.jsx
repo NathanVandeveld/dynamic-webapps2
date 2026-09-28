@@ -15,6 +15,7 @@ export function PersonsPage() {
             <Persons persons={sortedPersonsByScore} title="sorteer op score"/>
             <Persons persons={personsOfMechelen} title="Personen van Mechelen"/>
             <PersonScores persons={PERSON_DATA} title="scores van de personen"/>
+            <Cities persons={PERSON_DATA} title="steden van de personen"/>
         </>
     );
 }
@@ -56,6 +57,43 @@ function ScoreCard(props) {
             <Card.Body>
                 <Card.Title>Score: {score}</Card.Title>
                 <Card.Text>{firstNames.join(", ")}</Card.Text>
+            </Card.Body>
+        </Card>
+    );
+}
+function Cities (props){
+    const {persons, title} = props;
+    const cities = [...new Set(persons.map((person) => person.city))]
+        .map((name) => ({
+            name,
+            inhabitants: persons.filter((person) => person.city === name).length
+        }))
+        .sort((a, b) => a.inhabitants - b.inhabitants || a.name.localeCompare(b.name));
+    return (
+        <Card className="text-center">
+            <Card.Header>
+                <h3>{title}</h3>
+            </Card.Header>
+            <Card.Body>
+                <Row>
+                    {cities.map((city) => (
+                        <Col key={city.name} xs={12} sm={6} md={4} lg={3} xl={2} className="mb-3">
+                            <CityCard city={city}/>
+                        </Col>
+                    ))}
+                </Row>
+            </Card.Body>
+        </Card>
+    );
+}
+
+function CityCard(props) {
+    const {city} = props;
+    return (
+        <Card className="text-center">
+            <Card.Body>
+                <Card.Title>{city.name}</Card.Title>
+                <Card.Text>Inwoners: {city.inhabitants}</Card.Text>
             </Card.Body>
         </Card>
     );
