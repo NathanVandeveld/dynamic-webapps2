@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 
 export function StatePage() {
     const [demoStateValue, setDemoStateValue] = useState(0);
-console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
+    console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
     return (
         <div className="mx-3">
             <Section title="events">
@@ -18,7 +18,7 @@ console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
                         click me please!
                     </button>
                     <Button
-                        variant="primary"
+                        variant="outline-secondary"
                         className="m-2"
                         onClick={() => console.log("bootstrap button is clicked")}
                     >
@@ -29,10 +29,18 @@ console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
             <Section title="state">
                 <div>
                     <div className="m-2">demoStateValue = {demoStateValue}</div>
-                    <button variant="outline-secondary me-2"
+                    <Button variant="outline-secondary me-2"
                             onClick={() => setDemoStateValue(125)}>
                         SET 125
-                    </button>
+                    </Button>
+                    <Button variant="outline-secondary me-2"
+                            onClick={() => setDemoStateValue(0)}>
+                        SET 0
+                    </Button>
+                    <Button variant="outline-secondary me-2"
+                            onClick={() => {setDemoStateValue(184)}}>
+                        SET 184
+                    </Button>
                 </div>
             </Section>
 
