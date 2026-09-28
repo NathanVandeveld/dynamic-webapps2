@@ -1,6 +1,6 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import {NAV_MENU, NAV_PERSONS} from "../constants/navConstants.js";
-import {RENDER_DATA_EXERCISES} from "../constants/exercisesConstants.js";
+import {RENDER_DATA_EXERCISES, STATE_EVENTS_EXERCISES} from "../constants/exercisesConstants.js";
 
 function OpenExerciseButton(props) {
     const {onClick} = props;
@@ -32,23 +32,42 @@ function ExerciseCard(props) {
     );
 }
 
+function ExerciseSection(props) {
+    const {title, exercises, onSelectExercise} = props;
+
+    return (
+        <section className="mb-5">
+            <h2 className="h4 mb-3">{title}</h2>
+            <Row xs={1} md={2} className="g-3">
+                {exercises.map(e => (
+                    <Col key={e.key}>
+                        <ExerciseCard
+                            title={e.title}
+                            description={e.description}
+                            onSelect={() => onSelectExercise(e.key)}
+                        />
+                    </Col>
+                ))}
+            </Row>
+        </section>
+    );
+}
+
 export function ExercisesPage(props) {
     const {onSelectExercise} = props;
 
     return (
         <Container className="my-4">
-            <Row xs={1} md={2} className="g-3">
-                {RENDER_DATA_EXERCISES.map(e=>(
-
-                <Col key={e.key}>
-                    <ExerciseCard
-                        title={e.title}
-                        description={e.description}
-                        onSelect={() => onSelectExercise(e.key)}
-                    />
-                </Col>
-                ))}
-            </Row>
+            <ExerciseSection
+                title="Renderen van data"
+                exercises={RENDER_DATA_EXERCISES}
+                onSelectExercise={onSelectExercise}
+            />
+            <ExerciseSection
+                title="State & Events"
+                exercises={STATE_EVENTS_EXERCISES}
+                onSelectExercise={onSelectExercise}
+            />
         </Container>
     );
 }
