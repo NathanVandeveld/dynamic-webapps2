@@ -1,6 +1,7 @@
 import {Persons} from "../components/exercises/Persons.jsx";
 import {PERSON_DATA} from "../data/data.jsx";
 import {Card, Col, Row} from "react-bootstrap";
+import {Section} from "../components/common/Section.jsx";
 
 export function PersonsPage() {
     const sortedPersons = [...PERSON_DATA].sort((a, b) => a.name.localeCompare(b.name));
@@ -33,11 +34,8 @@ function PersonScores(props) {
     }, {});
 
     return (
-        <Card className="text-center">
-            <Card.Header>
-                <h3>{title}</h3>
-            </Card.Header>
-            <Card.Body>
+
+            <Section title={title}>
                 <Row>
                     {uniqueScores.map((score) => (
                         <Col key={score} xs={12} sm={6} md={4} lg={3} xl={2} className="mb-3">
@@ -45,8 +43,8 @@ function PersonScores(props) {
                         </Col>
                     ))}
                 </Row>
-            </Card.Body>
-        </Card>
+            </Section>
+
     );
 }
 
@@ -70,11 +68,8 @@ function Cities (props){
         }))
         .sort((a, b) => a.inhabitants - b.inhabitants || a.name.localeCompare(b.name));
     return (
-        <Card className="text-center">
-            <Card.Header>
-                <h3>{title}</h3>
-            </Card.Header>
-            <Card.Body>
+
+            <Section title={title}>
                 <Row>
                     {cities.map((city) => (
                         <Col key={city.name} xs={12} sm={6} md={4} lg={3} xl={2} className="mb-3">
@@ -82,19 +77,7 @@ function Cities (props){
                         </Col>
                     ))}
                 </Row>
-            </Card.Body>
-        </Card>
-    );
-}
+            </Section>
 
-function CityCard(props) {
-    const {city} = props;
-    return (
-        <Card className="text-center">
-            <Card.Body>
-                <Card.Title>{city.name}</Card.Title>
-                <Card.Text>Inwoners: {city.inhabitants}</Card.Text>
-            </Card.Body>
-        </Card>
     );
 }
