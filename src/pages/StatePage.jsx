@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 
 export function StatePage() {
     const [demoStateValue, setDemoStateValue] = useState(0);
-
+console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
     return (
         <div className="mx-3">
             <Section title="events">
@@ -24,6 +24,11 @@ export function StatePage() {
                     >
                         click me please!
                     </Button>
+                </div>
+            </Section>
+            <Section title="state">
+                <div>
+                    <div className="m-2">demoStateValue = {demoStateValue}</div>
                 </div>
             </Section>
 
