@@ -29,6 +29,10 @@ console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
             <Section title="state">
                 <div>
                     <div className="m-2">demoStateValue = {demoStateValue}</div>
+                    <button variant="outline-secondary me-2"
+                            onClick={() => setDemoStateValue(125)}>
+                        SET 125
+                    </button>
                 </div>
             </Section>
 
