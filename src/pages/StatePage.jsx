@@ -53,6 +53,9 @@ export function StatePage() {
             <Section title="on/off demo">
             <OnOffDemo></OnOffDemo>
             </Section>
+            <Section title="show/not show demo">
+                <ShowNotShowDemo valueToShow="Hello, I am here!"/>
+            </Section>
         </div>
     );
 }
@@ -85,4 +88,15 @@ function OnOffDemo() {
         </>
     );
 
+}
+function ShowNotShowDemo(props){
+    const {valueToShow} = props;
+    const [show, setShow] = useState(false);
+    return (
+        <>
+        <div className="my-3 py-2 border border-secondary">
+            <p>{show ? valueToShow : ""}</p>
+            <OutlineButton onClick={() => setShow(!show)}>{show ? "hide" : "show"}</OutlineButton>
+        </div></>
+    );
 }
