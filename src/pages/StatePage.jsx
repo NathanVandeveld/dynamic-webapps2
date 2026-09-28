@@ -50,6 +50,9 @@ export function StatePage() {
                 <Counter name="A"></Counter>
                 <Counter name="B"></Counter>
             </Section>
+            <Section title="on/off demo">
+            <OnOffDemo></OnOffDemo>
+            </Section>
         </div>
     );
 }
@@ -58,13 +61,27 @@ function Counter(props) {
     const {name} = props;
     const [counter, setCounter] = useState(0);
     return (
-        <Card>
-            <CardBody className="me-2">
-            <p>de waarde van counter {name} is {counter}</p>
-            <OutlineButton onClick={() => setCounter(counter - 1)}>-</OutlineButton>
-            <OutlineButton onClick={() => setCounter(0)}>0</OutlineButton>
-            <OutlineButton onClick={() => setCounter(counter + 1)}>+</OutlineButton>
-            </CardBody>
-        </Card>
+        <>
+            <div className="my-3 py-2 border border-secondary">
+                <p>de waarde van counter {name} is {counter}</p>
+                <OutlineButton onClick={() => setCounter(counter - 1)}>-</OutlineButton>
+                <OutlineButton onClick={() => setCounter(0)}>0</OutlineButton>
+                <OutlineButton onClick={() => setCounter(counter + 1)}>+</OutlineButton>
+            </div>
+        </>
     );
+}
+
+function OnOffDemo() {
+    const [isOn, setIsOn] = useState(false);
+    return (
+        <>
+            <div className="my-3 py-2 border border-secondary">
+                <p>huidige waarde van isOn is: {isOn ? "on" : "off"}</p>
+                <OutlineButton onClick={() => setIsOn(true)}>on</OutlineButton>
+                <OutlineButton onClick={() => setIsOn(false)}>off</OutlineButton>
+            </div>
+        </>
+    );
+
 }
