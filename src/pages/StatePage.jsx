@@ -1,6 +1,6 @@
 import {Section} from "../components/common/Section.jsx";
 import {useState} from "react";
-import {Button} from "react-bootstrap";
+import {Button, Card, CardBody} from "react-bootstrap";
 import {OutlineButton} from "../components/common/Buttons.jsx";
 
 export function StatePage() {
@@ -46,23 +46,25 @@ export function StatePage() {
                     </OutlineButton>
                 </div>
             </Section>
-            <Section tittle="counter">
-            <Counter name="counter"></Counter>
+            <Section title="counter">
+                <Counter name="A"></Counter>
+                <Counter name="B"></Counter>
             </Section>
         </div>
     );
 }
-function Counter(props){
+
+function Counter(props) {
     const {name} = props;
     const [counter, setCounter] = useState(0);
     return (
-        <div>
-            <h3>{name}</h3>
-            <p>de waarde van counter A is {counter}</p>
-            <OutlineButton onClick={() => setCounter(counter - 1)}>-1</OutlineButton>
+        <Card>
+            <CardBody className="me-2">
+            <p>de waarde van counter {name} is {counter}</p>
+            <OutlineButton onClick={() => setCounter(counter - 1)}>-</OutlineButton>
             <OutlineButton onClick={() => setCounter(0)}>0</OutlineButton>
-            <OutlineButton onClick={() => setCounter(counter + 1)}>+1</OutlineButton>
-
-        </div>
+            <OutlineButton onClick={() => setCounter(counter + 1)}>+</OutlineButton>
+            </CardBody>
+        </Card>
     );
 }
