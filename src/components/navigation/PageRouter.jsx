@@ -1,7 +1,8 @@
 import {ExercisesPage} from "../../pages/ExercisesPage.jsx";
 import {MenuCardPage} from "../../pages/MenuCardPage.jsx";
 import {PersonsPage} from "../../pages/PersonsPage.jsx";
-import {NAV_EXERCISES, NAV_MENU, NAV_PERSONS} from "../../constants/navConstants.js";
+import {NAV_EXERCISES, NAV_MENU, NAV_PERSONS, NAV_STATE} from "../../constants/navConstants.js";
+import {StatePage} from "../../pages/StatePage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -13,6 +14,8 @@ export function PageRouter(props) {
             return <MenuCardPage/>;
         case NAV_PERSONS:
             return <PersonsPage/>;
+            case NAV_STATE:
+                return <StatePage/>;
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }

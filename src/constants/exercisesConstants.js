@@ -1,8 +1,9 @@
-import {NAV_MENU, NAV_PERSONS} from "./navConstants.js";
+import {NAV_MENU, NAV_PERSONS, NAV_STATE} from "./navConstants.js";
 
 export const RENDER_DATA_EXERCISES = [
     {key: NAV_MENU, title: "Menukaart", description: "Menukaart met data uit data.js"},
     {key: NAV_PERSONS, title: "Personen", description: "Lijst met personen - simpel"},
+    {key: NAV_STATE, title: "State", description: "Oefenen met useState en events"},
     /*{key: NAV_NUMBERS, title: "Getallen", description: "Werken met lijsten van getallen"},
     {key: NAV_PICTURES, title: "Afbeeldingen", description: "Fotogalerij"},
     {key: NAV_CARS, title: "Auto's", description: "Lijst van auto's"},
