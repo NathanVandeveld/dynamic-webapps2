@@ -80,6 +80,7 @@ function OnOffDemo() {
                 <p>huidige waarde van isOn is: {isOn ? "on" : "off"}</p>
                 <OutlineButton onClick={() => setIsOn(true)}>on</OutlineButton>
                 <OutlineButton onClick={() => setIsOn(false)}>off</OutlineButton>
+                <OutlineButton onClick={() => setIsOn(!isOn)}>toggle</OutlineButton>
             </div>
         </>
     );
