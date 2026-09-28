@@ -32,7 +32,7 @@ function PersonScores(props) {
     }, {});
 
     return (
-        <Card>
+        <Card className="text-center">
             <Card.Header>
                 <h3>{title}</h3>
             </Card.Header>
@@ -40,12 +40,7 @@ function PersonScores(props) {
                 <Row>
                     {uniqueScores.map((score) => (
                         <Col key={score} xs={12} sm={6} md={4} lg={3} xl={2} className="mb-3">
-                            <Card className="text-center">
-                                <Card.Body>
-                                    <Card.Title>Score: {score}</Card.Title>
-                                    <Card.Text>{firstNamesByScore[score].join(", ")}</Card.Text>
-                                </Card.Body>
-                            </Card>
+                            <ScoreCard score={score} firstNames={firstNamesByScore[score]}/>
                         </Col>
                     ))}
                 </Row>
@@ -54,4 +49,14 @@ function PersonScores(props) {
     );
 }
 
-
+function ScoreCard(props) {
+    const {score, firstNames} = props;
+    return (
+        <Card className="text-center">
+            <Card.Body>
+                <Card.Title>Score: {score}</Card.Title>
+                <Card.Text>{firstNames.join(", ")}</Card.Text>
+            </Card.Body>
+        </Card>
+    );
+}
