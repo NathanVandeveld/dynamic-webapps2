@@ -1,6 +1,7 @@
 import {Section} from "../components/common/Section.jsx";
 import {useState} from "react";
 import {Button} from "react-bootstrap";
+import {OutlineButton} from "../components/common/Buttons.jsx";
 
 export function StatePage() {
     const [demoStateValue, setDemoStateValue] = useState(0);
@@ -30,22 +31,21 @@ export function StatePage() {
                 <div>
                     <div className="m-2">demoStateValue = {demoStateValue}</div>
                     <div className="m-2">demoStateValue = {demoStateValue}</div>
-                    <Button variant="outline-secondary me-2"
-                            onClick={() => setDemoStateValue(125)}>
+                    <OutlineButton
+                        onClick={() => setDemoStateValue(125)}>
                         SET 125
-                    </Button>
-                    <Button variant="outline-secondary me-2"
-                            onClick={() => setDemoStateValue(0)}>
+                    </OutlineButton>
+                    <OutlineButton
+                        onClick={() => setDemoStateValue(0)}>
                         SET 0
-                    </Button>
-                    <Button variant="outline-secondary me-2"
-                            onClick={() => {setDemoStateValue(184)}}>
+                    </OutlineButton>
+                    <OutlineButton
+                        onClick={() =>
+                            setDemoStateValue(184)}>
                         SET 184
-                    </Button>
+                    </OutlineButton>
                 </div>
             </Section>
-
-
         </div>
     );
 }
