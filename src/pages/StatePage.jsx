@@ -29,6 +29,7 @@ export function StatePage() {
             <Section title="state">
                 <div>
                     <div className="m-2">demoStateValue = {demoStateValue}</div>
+                    <div className="m-2">demoStateValue = {demoStateValue}</div>
                     <Button variant="outline-secondary me-2"
                             onClick={() => setDemoStateValue(125)}>
                         SET 125
