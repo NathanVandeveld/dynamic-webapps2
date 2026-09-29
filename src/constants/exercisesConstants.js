@@ -1,4 +1,4 @@
-import {NAV_MENU, NAV_PERSONS, NAV_STATE} from "./navConstants.js";
+import {NAV_MENU, NAV_PERSONS, NAV_STATE,NAV_SYNTHETIC_EVENT} from "./navConstants.js";
 
 export const RENDER_DATA_EXERCISES = [
     {key: NAV_MENU, title: "Menukaart", description: "Menukaart met data uit data.js"},
@@ -9,5 +9,6 @@ export const RENDER_DATA_EXERCISES = [
     {key: NAV_WIKI, title: "Wiki", description: "Informatie over ons"}*/
 ];
 export const STATE_EVENTS_EXERCISES = [
-    {key: NAV_STATE, title: "State", description: "Oefenen met useState en events"}
+    {key: NAV_STATE, title: "State", description: "Oefenen met useState en events"},
+    {key:NAV_SYNTHETIC_EVENT, title: "Synthetic event", description: "onclick en clientX/clientY uit het synthetic event"}
 ];
