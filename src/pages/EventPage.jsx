@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {Section} from "../components/common/Section.jsx";
 
 export function EventPage() {
@@ -16,11 +16,25 @@ export function EventPage() {
                 </Row>
             </Section>
             <Section title="prevent Default">
-                <a href="/" onClick={e =>{ e.preventDefault();
+                <a href="/" onClick={e => {
+                    e.preventDefault();
                     console.log("link is kliked");
                 }}>
                     Klik op deze link
                 </a>
+            </Section>
+            <Section title="stop propagation">
+                <Row>
+                    <Col className="border rounded bg-info p-4"
+                         onClick={() => console.log("div clicked")}>
+                        <Button onClick={e => {
+                            e.stopPropagation();
+                            console.log("button clicked");
+                        }}>
+                            normal button
+                        </Button>
+                    </Col>
+                </Row>
             </Section>
         </Container>
     );
