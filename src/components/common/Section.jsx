@@ -13,3 +13,13 @@ export function Section(props) {
         </Card>
     );
 }
+export function SectionCard(props) {
+    const {children} = props;
+    return (
+        <Card className="h-100 shadow-sm">
+            <CardBody>
+                {children}
+            </CardBody>
+        </Card>
+    )
+}
