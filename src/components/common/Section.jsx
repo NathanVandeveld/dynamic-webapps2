@@ -21,5 +21,5 @@ export function SectionCard(props) {
                 {children}
             </CardBody>
         </Card>
-    )
+    );
 }

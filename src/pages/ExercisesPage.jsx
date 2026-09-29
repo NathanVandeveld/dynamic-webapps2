@@ -1,6 +1,6 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import {NAV_MENU, NAV_PERSONS} from "../constants/navConstants.js";
 import {RENDER_DATA_EXERCISES, STATE_EVENTS_EXERCISES} from "../constants/exercisesConstants.js";
+import {Section, SectionCard} from "../components/common/Section.jsx";
 
 function OpenExerciseButton(props) {
     const {onClick} = props;
@@ -36,20 +36,26 @@ function ExerciseSection(props) {
     const {title, exercises, onSelectExercise} = props;
 
     return (
-        <section className="mb-5">
-            <h2 className="h4 mb-3">{title}</h2>
-            <Row xs={1} md={2} className="g-3">
-                {exercises.map(e => (
-                    <Col key={e.key}>
-                        <ExerciseCard
-                            title={e.title}
-                            description={e.description}
-                            onSelect={() => onSelectExercise(e.key)}
-                        />
-                    </Col>
-                ))}
-            </Row>
-        </section>
+        <div className="mb-4">
+            <Section title={title}>
+                <Row xs={1} md={2} className="g-3">
+                    {exercises.map(e => (
+                        <Col key={e.key}>
+                            <SectionCard>
+                                <Card.Title>{e.title}</Card.Title>
+                                <Card.Text className="text-muted">{e.description}</Card.Text>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => onSelectExercise(e.key)}
+                                >
+                                    Open Oefening
+                                </Button>
+                            </SectionCard>
+                        </Col>
+                    ))}
+                </Row>
+            </Section>
+        </div>
     );
 }
 

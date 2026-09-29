@@ -1,6 +1,6 @@
 import {Section} from "../components/common/Section.jsx";
 import {useState} from "react";
-import {Button, Card, CardBody} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import {OutlineButton} from "../components/common/Buttons.jsx";
 
 export function StatePage() {
