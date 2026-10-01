@@ -51,13 +51,16 @@ export function StatePage() {
                 <Counter name="B"></Counter>
             </Section>
             <Section title="on/off demo">
-            <OnOffDemo></OnOffDemo>
+                <OnOffDemo></OnOffDemo>
             </Section>
             <Section title="show/not show demo">
                 <ShowNotShowDemo valueToShow="Hello, I am here!"/>
             </Section>
             <Section title="state owner?">
                 <StateOwnerOrNotOwner/>
+            </Section>
+            <Section title="ik ga op reis...">
+                <TravelingGame/>
             </Section>
         </div>
     );
@@ -92,26 +95,65 @@ function OnOffDemo() {
     );
 
 }
-function ShowNotShowDemo(props){
+
+function ShowNotShowDemo(props) {
     const {valueToShow} = props;
     const [show, setShow] = useState(false);
     return (
         <>
-        <div className="my-3 py-2 border border-secondary">
-            <p>{show ? valueToShow : ""}</p>
-            <OutlineButton onClick={() => setShow(!show)}>{show ? "hide" : "show"}</OutlineButton>
-        </div></>
+            <div className="my-3 py-2 border border-secondary">
+                {show && (
+                    valueToShow
+                        ? <p>{valueToShow}</p>
+                        : <p className="fst-italic">{"<leeg>"}</p>
+                )}
+                <OutlineButton onClick={() => setShow(!show)}>{show ? "hide" : "show"}</OutlineButton>
+            </div>
+        </>
     );
 }
+
 function StateOwnerOrNotOwner() {
-    const [sharedState, setSharedState] = useState("waarde = shared state ");
+    const [sharedState, setSharedState] = useState("waarde = shared state");
     return (
         <div className="my-3 py-2 border border-secondary">
             <p>{sharedState}</p>
-            <OutlineButton onClick={() => setSharedState(sharedState+ "!")}>!</OutlineButton>
-            <OutlineButton onClick={() => setSharedState(sharedState+ "?")}>?</OutlineButton>
-            <OutlineButton onClick={() => setSharedState(sharedState+ "...")}>...</OutlineButton>
+            <AddTailButton tail="!" sharedState={sharedState} onAddTail={setSharedState}/>
+            <AddTailButton tail="?" sharedState={sharedState} onAddTail={setSharedState}/>
+            <AddTailButton tail="..." sharedState={sharedState} onAddTail={setSharedState}/>
         </div>
     );
+}
 
+function AddTailButton(props) {
+    const {tail, sharedState, onAddTail} = props;
+    const newValue = sharedState + tail;
+    return (
+        <OutlineButton onClick={() => onAddTail(newValue)}>
+            {tail}
+        </OutlineButton>
+    );
+}
+
+const TRAVEL_ITEMS = ["zonnebril", "handdoek", "koffer", "sandalen",
+    "zwemshort", "boek", "camera", "hoed", "paspoort", "rugzak",
+    "waterfles", "spelkaarten", "laptop", "lader", "verrekijker",
+    "paraplu", "strandbal", "hangmat", "reisgids", "snacks"];
+
+function TravelingGame() {
+    const [resultaat, setResultaat] = useState("");
+    return (
+        <div className="my-3 py-2 border border-secondary">
+            <p>ik ga op reis en neem mee...</p>
+            <ShowNotShowDemo valueToShow={resultaat}/>
+            {TRAVEL_ITEMS.map(item => (
+                <AddTailButton
+                    key={item}
+                    tail={`${item} `}
+                    sharedState={resultaat}
+                    onAddTail={setResultaat}
+                />
+            ))}
+        </div>
+    );
 }
