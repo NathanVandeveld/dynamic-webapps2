@@ -56,6 +56,9 @@ export function StatePage() {
             <Section title="show/not show demo">
                 <ShowNotShowDemo valueToShow="Hello, I am here!"/>
             </Section>
+            <Section title="state owner?">
+                <StateOwnerOrNotOwner/>
+            </Section>
         </div>
     );
 }
@@ -99,4 +102,16 @@ function ShowNotShowDemo(props){
             <OutlineButton onClick={() => setShow(!show)}>{show ? "hide" : "show"}</OutlineButton>
         </div></>
     );
+}
+function StateOwnerOrNotOwner() {
+    const [sharedState, setSharedState] = useState("waarde = shared state ");
+    return (
+        <div className="my-3 py-2 border border-secondary">
+            <p>{sharedState}</p>
+            <OutlineButton onClick={() => setSharedState(sharedState+ "!")}>!</OutlineButton>
+            <OutlineButton onClick={() => setSharedState(sharedState+ "?")}>?</OutlineButton>
+            <OutlineButton onClick={() => setSharedState(sharedState+ "...")}>...</OutlineButton>
+        </div>
+    );
+
 }
