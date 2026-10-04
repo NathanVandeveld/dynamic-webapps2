@@ -34,3 +34,4 @@ export const PERSON_DATA = [
     {id: 19, name: "Ruben Bogaerts", score: 47, city: "Lier"},
     {id: 20, name: "Emma Goossens", score: 26, city: "Kontich"}
 ];
+export const NUMBER_DATA = [1, 3, 5, 2, 6, 7, 34, 12, 66, 98, 11, 2];
