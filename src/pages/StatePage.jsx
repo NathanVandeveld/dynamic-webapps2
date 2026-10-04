@@ -5,9 +5,13 @@ import {OutlineButton} from "../components/common/Buttons.jsx";
 
 export function StatePage() {
     const [demoStateValue, setDemoStateValue] = useState(0);
+    const[travelingGameResult, setTravelingGameResult] = useState("");
     console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
     return (
         <div className="mx-3">
+            <Section title="cheater">
+                <TravelingGameCheater travelingGameResult={travelingGameResult} />
+            </Section>
             <Section title="events">
                 <div>
                     <button
@@ -60,7 +64,9 @@ export function StatePage() {
                 <StateOwnerOrNotOwner/>
             </Section>
             <Section title="ik ga op reis...">
-                <TravelingGame/>
+                <TravelingGame
+                travelingGameResult={travelingGameResult}
+                onTravelingGameResultChange={setTravelingGameResult}/>
             </Section>
         </div>
     );
@@ -140,20 +146,29 @@ const TRAVEL_ITEMS = ["zonnebril", "handdoek", "koffer", "sandalen",
     "waterfles", "spelkaarten", "laptop", "lader", "verrekijker",
     "paraplu", "strandbal", "hangmat", "reisgids", "snacks"];
 
-function TravelingGame() {
-    const [resultaat, setResultaat] = useState("");
-    return (
+function TravelingGame(props) {
+    const {travelingGameResult, onTravelingGameResultChange} = props;
+        return (
         <div className="my-3 py-2 border border-secondary">
             <p>ik ga op reis en neem mee...</p>
-            <ShowNotShowDemo valueToShow={resultaat}/>
+            <ShowNotShowDemo valueToShow={travelingGameResult}/>
             {TRAVEL_ITEMS.map(item => (
                 <AddTailButton
                     key={item}
                     tail={`${item} `}
-                    sharedState={resultaat}
-                    onAddTail={setResultaat}
+                    sharedState={travelingGameResult}
+                    onAddTail={onTravelingGameResultChange}
                 />
             ))}
+        </div>
+    );
+}
+function TravelingGameCheater(props){
+    const {travelingGameResult} = props;
+    return(
+        <div className="my-3 py-2 border border-secondary">
+            <p>ik ga op reis en neem mee...</p>
+            <p>{travelingGameResult}</p>
         </div>
     );
 }
