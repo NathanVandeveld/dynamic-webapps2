@@ -9,7 +9,7 @@ export function StatePage() {
     console.log("StatePage is rendered with demoStateValue = ", demoStateValue);
     return (
         <div className="mx-3">
-            <Section title="cheater">
+            <Section title="cheater" isInitiallyOpen>
                 <TravelingGameCheater travelingGameResult={travelingGameResult} />
             </Section>
             <Section title="events">

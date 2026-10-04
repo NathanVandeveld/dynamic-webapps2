@@ -3,8 +3,8 @@ import {useState} from "react";
 import {ToggleButton} from "./Buttons.jsx";
 
 export function Section(props) {
-    const {title, children} = props;
-    const [isOpen, setIsOpen] = useState(false);
+    const {title, children, isInitiallyOpen=false} = props;
+    const [isOpen, setIsOpen] = useState(isInitiallyOpen);
     return (
         <Card className="text-center">
             <CardHeader className="position-relative text-center bg-light py-2 px-3 d-flex align-items-center justify-content-center">

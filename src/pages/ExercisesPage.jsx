@@ -33,11 +33,11 @@ function ExerciseCard(props) {
 }
 
 function ExerciseSection(props) {
-    const {title, exercises, onSelectExercise} = props;
+    const {title, exercises, onSelectExercise, isInitiallyOpen} = props;
 
     return (
         <div className="mb-4">
-            <Section title={title}>
+            <Section title={title} isInitiallyOpen={isInitiallyOpen}>
                 <Row xs={1} md={3} className="g-3">
                     {exercises.map(e => (
                         <Col key={e.key}>
@@ -73,6 +73,7 @@ export function ExercisesPage(props) {
                 title="State & Events"
                 exercises={STATE_EVENTS_EXERCISES}
                 onSelectExercise={onSelectExercise}
+                isInitiallyOpen
             />
         </Container>
     );
