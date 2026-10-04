@@ -38,7 +38,7 @@ function ExerciseSection(props) {
     return (
         <div className="mb-4">
             <Section title={title}>
-                <Row xs={1} md={2} className="g-3">
+                <Row xs={1} md={3} className="g-3">
                     {exercises.map(e => (
                         <Col key={e.key}>
                             <SectionCard>
