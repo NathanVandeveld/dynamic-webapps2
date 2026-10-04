@@ -10,7 +10,7 @@ export function PersonsPage() {
     const personsOfMechelen = [...PERSON_DATA].filter((person)=>person.city==="Mechelen");
     return (
         <>
-            <Persons persons={PERSON_DATA} title="Personen"/>
+            <Persons persons={PERSON_DATA} title="Personen" isInitiallyOpen/>
             <Persons persons={sortedPersons} title="Personen gesorteerd op naam"/>
             <Persons persons={sortedPersonsDesc} title="personen aflopend gesorteerd op naam"/>
             <Persons persons={sortedPersonsByScore} title="sorteer op score"/>

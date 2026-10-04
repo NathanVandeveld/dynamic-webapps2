@@ -19,9 +19,9 @@ export function Person(props) {
 }
 
 export function Persons(props) {
-    const {persons, title} = props;
+    const {persons, title, isInitiallyOpen} = props;
     return (
-            <Section title={title}>
+            <Section title={title} isInitiallyOpen={isInitiallyOpen}>
                 <Row>
                     {persons.map((person) => (
                         <Col key={person.id} xs={12} sm={6} md={3} xl={2} className="mb-3">

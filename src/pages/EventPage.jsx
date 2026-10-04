@@ -6,7 +6,7 @@ export function EventPage() {
     const [position, setPosition] = useState(null);
     return (
         <Container className="my-4">
-            <Section title="Synthetic event">
+            <Section title="Synthetic event" isInitiallyOpen>
                 <Row>
                     <Col className="border rounded bg-warning d-flex align-items-center justify-content-center"
                          style={{height: "300px"}}
