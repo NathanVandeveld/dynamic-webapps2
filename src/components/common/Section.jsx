@@ -1,4 +1,4 @@
-import {Card, CardBody, CardHeader, Collapse} from "react-bootstrap";
+import {Card, CardHeader, Collapse, Row} from "react-bootstrap";
 import {useState} from "react";
 import {ToggleButton} from "./Buttons.jsx";
 
@@ -14,22 +14,10 @@ export function Section(props) {
                 </div>
             </CardHeader>
             <Collapse in={isOpen}>
-                <div>
-            <CardBody>
+                <Row>
                 {children}
-            </CardBody>
-                </div>
+                </Row>
             </Collapse>
-        </Card>
-    );
-}
-export function SectionCard(props) {
-    const {children} = props;
-    return (
-        <Card className="h-100 shadow-sm">
-            <CardBody>
-                {children}
-            </CardBody>
         </Card>
     );
 }

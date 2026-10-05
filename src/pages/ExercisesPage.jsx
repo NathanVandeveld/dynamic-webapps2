@@ -1,7 +1,8 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import {RENDER_DATA_EXERCISES, STATE_EVENTS_EXERCISES} from "../constants/exercisesConstants.js";
-import {Section, SectionCard} from "../components/common/Section.jsx";
-import {NUMBER_DATA} from "../data/data.jsx";
+
+import {SectionCard} from "../components/common/SectionCard.jsx";
+import {Section} from "../components/common/Section.jsx";
 
 function OpenExerciseButton(props) {
     const {onClick} = props;

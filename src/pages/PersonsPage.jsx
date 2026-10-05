@@ -2,6 +2,7 @@ import {Persons} from "../components/exercises/Persons.jsx";
 import {PERSON_DATA} from "../data/data.jsx";
 import {Card, Col, Row} from "react-bootstrap";
 import {Section} from "../components/common/Section.jsx";
+import {SectionCard} from "../components/common/SectionCard.jsx";
 
 export function PersonsPage() {
     const sortedPersons = [...PERSON_DATA].sort((a, b) => a.name.localeCompare(b.name));
@@ -36,13 +37,13 @@ function PersonScores(props) {
     return (
 
             <Section title={title}>
-                <Row>
+                <SectionCard>
                     {uniqueScores.map((score) => (
                         <Col key={score} xs={12} sm={6} md={4} lg={3} xl={2} className="mb-3">
                             <ScoreCard score={score} firstNames={firstNamesByScore[score]}/>
                         </Col>
                     ))}
-                </Row>
+                </SectionCard>
             </Section>
 
     );

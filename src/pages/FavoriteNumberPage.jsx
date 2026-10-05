@@ -1,10 +1,11 @@
 import {useState} from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import {Section, SectionCard} from "../components/common/Section.jsx";
+import {Section} from "../components/common/Section.jsx";
 import {NUMBER_DATA} from "../data/data.jsx";
 import {OutlineButton} from "../components/common/Buttons.jsx";
+import {SectionCard} from "../components/common/SectionCard.jsx";
 
-export function FavoriteNumberPage(){
+export function FavoriteNumberPage() {
     const [favorite, setFavorite] = useState(undefined);
     return (
         <Container className="my-4">
@@ -12,29 +13,29 @@ export function FavoriteNumberPage(){
                 <Section title="Kies je favoriete nummer" isInitiallyOpen>
                     <FavoriteNumbers
                         numbers={NUMBER_DATA}
-                        onSelectNumber={setFavorite()}/>
+                        markedNumber={favorite}
+                        onSelectNumber={setFavorite}/>
                 </Section>
+                <p>Mijn favoriet getal is {favorite ?? "(niet gekozen)"}</p>
             </div>
-            <Section title="Je favoriet" isInitiallyOpen>
-                <p>Favoriet: {favorite??"(niet gekozen)"}</p>
-            </Section>
+
         </Container>
     );
 }
-function FavoriteNumbers(props){
-    const{numbers,onSelectNumber}=props;
+
+function FavoriteNumbers(props) {
+    const {numbers, onSelectNumber, markedNumber} = props;
     return (
-        <Row xs={2} md={4} className="g-3">
-            {numbers.map(n => (
+        <Row>
+            {numbers.map(((n, index) => (
                 <Col key={n}>
-                    <SectionCard>
-                        <p className="h4">{n}</p>
-                        <OutlineButton onClick={()=> onSelectNumber(n)}>
-                            kies
-                        </OutlineButton>
+                    <SectionCard key={index}
+                                 onSelect={() => onSelectNumber(n)}
+                                 isMarked={n === markedNumber}>
+                        {n}
                     </SectionCard>
                 </Col>
-            ))}
+            )))}
         </Row>
     );
 }
