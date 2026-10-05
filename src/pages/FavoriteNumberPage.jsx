@@ -2,7 +2,6 @@ import {useState} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import {Section} from "../components/common/Section.jsx";
 import {NUMBER_DATA} from "../data/data.jsx";
-import {OutlineButton} from "../components/common/Buttons.jsx";
 import {SectionCard} from "../components/common/SectionCard.jsx";
 
 export function FavoriteNumberPage() {
@@ -25,9 +24,10 @@ export function FavoriteNumberPage() {
 
 function FavoriteNumbers(props) {
     const {numbers, onSelectNumber, markedNumber} = props;
+    const uniqueNumbers = [...new Set(numbers)];
     return (
         <Row>
-            {numbers.map(((n, index) => (
+            {uniqueNumbers.map(((n, index) => (
                 <Col key={n}>
                     <SectionCard key={index}
                                  onSelect={() => onSelectNumber(n)}
