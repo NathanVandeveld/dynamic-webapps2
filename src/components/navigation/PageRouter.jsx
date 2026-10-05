@@ -2,7 +2,7 @@ import {ExercisesPage} from "../../pages/ExercisesPage.jsx";
 import {MenuCardPage} from "../../pages/MenuCardPage.jsx";
 import {PersonsPage} from "../../pages/PersonsPage.jsx";
 import {
-    NAV_EXERCISES,
+    NAV_EXERCISES, NAV_INPUT,
     NAV_MENU,
     NAV_NUMBERS,
     NAV_PERSONS,
@@ -12,6 +12,7 @@ import {
 import {StatePage} from "../../pages/StatePage.jsx";
 import {EventPage} from "../../pages/EventPage.jsx";
 import {FavoriteNumberPage} from "../../pages/FavoriteNumberPage.jsx";
+import {InputPage} from "../../pages/InputPage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -29,6 +30,8 @@ export function PageRouter(props) {
             return <EventPage/>;
         case NAV_NUMBERS:
             return <FavoriteNumberPage/>;
+            case NAV_INPUT:
+                return<InputPage/>;
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }
