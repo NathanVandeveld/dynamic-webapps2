@@ -2,6 +2,7 @@ import {ExercisesPage} from "../../pages/ExercisesPage.jsx";
 import {MenuCardPage} from "../../pages/MenuCardPage.jsx";
 import {PersonsPage} from "../../pages/PersonsPage.jsx";
 import {
+    NAV_CARS,
     NAV_EXERCISES,
     NAV_INPUT,
     NAV_MENU,
@@ -18,6 +19,7 @@ import {InputPage} from "../../pages/InputPage.jsx";
 import {SearchPersonsPage} from "../../pages/SearchPersonsPage.jsx";
 import {NumbersPage} from "../../pages/NumbersPage.jsx";
 import {PicturesPage} from "../../pages/PicturesPage.jsx";
+import {CarsPage} from "../../pages/CarsPage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -43,6 +45,8 @@ export function PageRouter(props) {
             return <SearchPersonsPage/>;
         case NAV_PICTURES:
             return <PicturesPage/>;
+        case NAV_CARS:
+            return<CarsPage/>;
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }

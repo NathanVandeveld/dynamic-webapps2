@@ -35,3 +35,115 @@ export const PERSON_DATA = [
     {id: 20, name: "Emma Goossens", score: 26, city: "Kontich"}
 ];
 export const NUMBER_DATA = [1, 3, 5, 2, 6, 7, 34, 12, 66, 98, 11, 2];
+export const CAR_DATA = [
+    {
+        id: 1,
+        name: "Peugeot 204",
+        brand: "Peugeot",
+        type: "204",
+        color: "blauw",
+        year: 1974,
+        note: "klein maar onverwoestbaar"
+    },
+    {
+        id: 2,
+        name: "Fiat Punto",
+        brand: "Fiat",
+        type: "Punto",
+        color: "geel",
+        year: 2002,
+        note: "die ging altijd kapot"
+    },
+    {
+        id: 3,
+        name: "Volvo 240",
+        brand: "Volvo",
+        color: "zwart",
+        year: 1988,
+        note: "veilig, zwaar, onverwoestbaar"
+    },
+    {
+        id: 4,
+        name: "Citroën 2CV",
+        brand: "Citroën",
+        type: "2CV",
+        year: 1978,
+        note: "het iconische 'geitje'"
+    },
+    {
+        id: 5,
+        name: "Peugeot 505",
+        brand: "Peugeot",
+        type: "505",
+        color: "grijs",
+        year: 1985
+    },
+    {
+        id: 6,
+        name: "Fiat Panda",
+        brand: "Fiat",
+        type: "Panda",
+        color: "wit",
+        year: 1990
+    },
+    {
+        id: 7,
+        name: "Fiat Tipo",
+        brand: "Fiat",
+        type: "Tipo",
+        color: "groen",
+        year: 1996
+    },
+    {
+        id: 8,
+        name: "Citroën C4",
+        brand: "Citroën",
+        type: "C4",
+        color: "rood",
+        year: 2010
+    },
+    {
+        id: 9,
+        name: "Fiat Panda II",
+        brand: "Fiat",
+        type: "Panda",
+        color: "rood",
+        year: 1995
+    },
+    {
+        id: 10,
+        name: "Opel Astra",
+        brand: "Opel",
+        type: "Astra",
+        color: "blauw",
+        year: 2008,
+        note: "handig voor lange ritten"
+    },
+    {
+        id: 11,
+        name: "Volkswagen Golf",
+        brand: "Volkswagen",
+        type: "Golf",
+        color: "geel",
+        year: 2015,
+        note: "betrouwbaar en zuinig"
+    },
+    {
+        id: 12,
+        name: "Mercedes 190",
+        brand: "Mercedes",
+        type: "190",
+        color: "zwart",
+        year: 1965,
+        note: "prachtig stukje geschiedenis"
+    },
+    {
+        id: 13,
+        name: "Tesla Model 3",
+        brand: "Tesla",
+        type: "Model 3",
+        color: "blauw",
+        year: 2022,
+        note: "stil, snel en futuristisch"
+    }
+];
