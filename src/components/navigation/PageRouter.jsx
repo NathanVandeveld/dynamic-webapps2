@@ -2,10 +2,12 @@ import {ExercisesPage} from "../../pages/ExercisesPage.jsx";
 import {MenuCardPage} from "../../pages/MenuCardPage.jsx";
 import {PersonsPage} from "../../pages/PersonsPage.jsx";
 import {
-    NAV_EXERCISES, NAV_INPUT,
+    NAV_EXERCISES,
+    NAV_INPUT,
     NAV_MENU,
-    NAV_NUMBERS,
+    NAV_NUMBERS, NAV_NUMBERS_PLAIN,
     NAV_PERSONS,
+    NAV_PERSONS_SEARCH,
     NAV_STATE,
     NAV_SYNTHETIC_EVENT
 } from "../../constants/navConstants.js";
@@ -13,6 +15,8 @@ import {StatePage} from "../../pages/StatePage.jsx";
 import {EventPage} from "../../pages/EventPage.jsx";
 import {FavoriteNumberPage} from "../../pages/FavoriteNumberPage.jsx";
 import {InputPage} from "../../pages/InputPage.jsx";
+import {SearchPersonsPage} from "../../pages/SearchPersonsPage.jsx";
+import {NumbersPage} from "../../pages/NumbersPage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -28,10 +32,14 @@ export function PageRouter(props) {
             return <StatePage/>;
         case NAV_SYNTHETIC_EVENT:
             return <EventPage/>;
+        case NAV_NUMBERS_PLAIN:
+            return <NumbersPage/>;
         case NAV_NUMBERS:
             return <FavoriteNumberPage/>;
-            case NAV_INPUT:
-                return<InputPage/>;
+        case NAV_INPUT:
+            return <InputPage/>;
+        case NAV_PERSONS_SEARCH:
+            return <SearchPersonsPage/>;
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }
