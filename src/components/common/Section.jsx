@@ -1,9 +1,9 @@
-import {Card, CardHeader, Collapse, Row} from "react-bootstrap";
+import {Card, CardBody, CardHeader, Collapse, Row} from "react-bootstrap";
 import {useState} from "react";
 import {ToggleButton} from "./Buttons.jsx";
 
 export function Section(props) {
-    const {title, children, isInitiallyOpen=false} = props;
+    const {title, children, isInitiallyOpen = false} = props;
     const [isOpen, setIsOpen] = useState(isInitiallyOpen);
     return (
         <Card className="text-center">
@@ -14,9 +14,13 @@ export function Section(props) {
                 </div>
             </CardHeader>
             <Collapse in={isOpen}>
-                <Row>
-                {children}
-                </Row>
+                <div>
+                    <CardBody>
+                        <Row className="g-3">
+                            {children}
+                        </Row>
+                    </CardBody>
+                </div>
             </Collapse>
         </Card>
     );
