@@ -4,9 +4,11 @@ import {NUMBER_DATA} from "../data/data.jsx";
 import {Col, Row} from "react-bootstrap";
 
 export function NumbersPage() {
+    const numbersGreaterThenSix = NUMBER_DATA.filter(n=> n>6);
     return (
         <div>
             <Numbers numbers={NUMBER_DATA} title="alle getallen"></Numbers>
+            <Numbers numbers={numbersGreaterThenSix} title="getallen groter dan 6"/>
         </div>
 
     );
