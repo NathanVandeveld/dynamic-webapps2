@@ -5,10 +5,12 @@ import {Col, Row} from "react-bootstrap";
 
 export function NumbersPage() {
     const numbersGreaterThenSix = NUMBER_DATA.filter(n=> n>6);
+    const getallenMaalTwee=NUMBER_DATA.map(n=>n*2);
     return (
         <div>
             <Numbers numbers={NUMBER_DATA} title="alle getallen"></Numbers>
             <Numbers numbers={numbersGreaterThenSix} title="getallen groter dan 6"/>
+            <Numbers numbers={getallenMaalTwee} title="getallen vermenigvuldigd met é"/>
         </div>
 
     );
