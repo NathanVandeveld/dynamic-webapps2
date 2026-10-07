@@ -1,3 +1,7 @@
+import {Section} from "../components/common/Section.jsx";
+import {Col, Row} from "react-bootstrap";
+import {SectionCard} from "../components/common/SectionCard.jsx";
+
 const ARTWORKS = [
     {
         id: 1,
@@ -96,3 +100,32 @@ const ARTWORKS = [
         tags: ["zon", "ochtend", "natuur", "warm"]
     }
 ];
+export function PicturesPage() {
+return (
+    <div className="mx-3">
+        <Pictures artworks={ARTWORKS} title="Oranje kunstwerken"/>
+    </div>
+);
+}
+function Pictures(props) {
+const {artworks, title} = props;
+return (
+    <Section title={title} isInitiallyOpen>
+        <Row xs={1} sm={2} lg={3} className="g-3">
+            {artworks.map( artwork => (
+                <Col key={artwork.id}>
+                    <SectionCard>
+                        <img
+                            src={`/images/${artwork.name}`}
+                            alt={artwork.title}
+                            width="100%"
+                        />
+                        <h5 className="mt-3">{artwork.title}</h5>
+                        <p className="text-muted mb-1">by {artwork.author}</p>
+                    </SectionCard>
+                </Col>
+                ))}
+        </Row>
+    </Section>
+);
+}

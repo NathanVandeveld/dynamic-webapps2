@@ -7,3 +7,4 @@ export const NAV_NUMBERS = "favoriteNumber";
 export const NAV_INPUT = "NAV_INPUT";
 export const NAV_PERSONS_SEARCH = "NAV_PERSONS_SEARCH";
 export const NAV_NUMBERS_PLAIN = "NAV_NMBERS_PLAIN";
+export const NAV_PICTURES = "artworks";
