@@ -1,11 +1,11 @@
-import {useState} from "react";
 import {Card, Container} from "react-bootstrap";
 import {MenuProduct} from "./MenuProduct.jsx";
 import {ShoppingCart} from "./ShoppingCart.jsx";
+import {useSessionStorage} from "usehooks-ts";
 
 export function MenuCard(props) {
     const {products} = props;
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useSessionStorage("cart", []);
 
     function handleAddToCart(product) {
         setCart(prevCart => {
