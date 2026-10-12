@@ -6,7 +6,7 @@ import {
     NAV_EXERCISES,
     NAV_INPUT,
     NAV_MENU,
-    NAV_NUMBERS, NAV_NUMBERS_PLAIN,
+    NAV_NUMBERS, NAV_NUMBERS_FAV_MULTIPLE, NAV_NUMBERS_PLAIN,
     NAV_PERSONS,
     NAV_PERSONS_SEARCH, NAV_PICTURES,
     NAV_STATE,
@@ -20,6 +20,7 @@ import {SearchPersonsPage} from "../../pages/SearchPersonsPage.jsx";
 import {NumbersPage} from "../../pages/NumbersPage.jsx";
 import {PicturesPage} from "../../pages/PicturesPage.jsx";
 import {CarsPage} from "../../pages/CarsPage.jsx";
+import {MultipleFavoriteNumbersPage} from "../../pages/MultipleFavoriteNumbersPage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -47,6 +48,8 @@ export function PageRouter(props) {
             return <PicturesPage/>;
         case NAV_CARS:
             return<CarsPage/>;
+        case NAV_NUMBERS_FAV_MULTIPLE:
+            return <MultipleFavoriteNumbersPage/>;
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }

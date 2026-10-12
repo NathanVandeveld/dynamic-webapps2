@@ -9,3 +9,4 @@ export const NAV_PERSONS_SEARCH = "NAV_PERSONS_SEARCH";
 export const NAV_NUMBERS_PLAIN = "NAV_NMBERS_PLAIN";
 export const NAV_PICTURES = "artworks";
 export const NAV_CARS = "cars";
+export const NAV_NUMBERS_FAV_MULTIPLE = "numFavorites";

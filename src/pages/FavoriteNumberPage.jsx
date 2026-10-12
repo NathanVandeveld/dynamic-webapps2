@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {Section} from "../components/common/Section.jsx";
 import {NUMBER_DATA} from "../data/data.jsx";
-import {SectionCard} from "../components/common/SectionCard.jsx";
+import {FavoriteNumbers} from "../components/exercises/FavoriteNumbers.jsx";
 
 export function FavoriteNumberPage() {
     const [favorite, setFavorite] = useState(undefined);
@@ -22,20 +22,4 @@ export function FavoriteNumberPage() {
     );
 }
 
-function FavoriteNumbers(props) {
-    const {numbers, onSelectNumber, markedNumber} = props;
-    const uniqueNumbers = [...new Set(numbers)];
-    return (
-        <Row>
-            {uniqueNumbers.map(((n, index) => (
-                <Col key={n}>
-                    <SectionCard key={index}
-                                 onSelect={() => onSelectNumber(n)}
-                                 isMarked={n === markedNumber}>
-                        {n}
-                    </SectionCard>
-                </Col>
-            )))}
-        </Row>
-    );
-}
+

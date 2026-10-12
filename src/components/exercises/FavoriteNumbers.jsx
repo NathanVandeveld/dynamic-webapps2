@@ -1,6 +1,7 @@
 import {Button} from "react-bootstrap";
 
-export function FavoriteNumbers({numbers, markedNumbers = [], onSelectNumber}) {
+export function FavoriteNumbers(props) {
+    const {numbers, markedNumbers = [], onSelectNumber} = props;
     return (
         <div className="d-flex flex-wrap gap-2">
             {numbers.map((number) => (

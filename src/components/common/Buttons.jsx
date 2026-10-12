@@ -20,3 +20,11 @@ export function ToggleButton(props) {
         </Button>
     );
 }
+export function PrimaryButton(props) {
+    const {onClick, children} = props;
+    return (
+        <Button variant="primary" onClick={onClick}>
+            {children}
+        </Button>
+    );
+}
