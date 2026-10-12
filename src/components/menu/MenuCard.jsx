@@ -6,7 +6,7 @@ import {ShoppingCart} from "./ShoppingCart.jsx";
 export function MenuCard(props) {
     const {products} = props;
     // Tijdelijk een paar orderLines om uit te proberen, later terug []
-    const [cart, setCart] = useState([{id: 1, amount: 2}, {id: 2, amount: 1}]);
+    const [cart, setCart] = useState([]);
 
     function handleAddToCart(product) {
         setCart(prevCart => {
