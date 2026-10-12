@@ -1,12 +1,12 @@
-import {Row, Col} from "react-bootstrap";
+import {Row, Col, Button} from "react-bootstrap";
 
 export function MenuProduct(props) {
-    const {product} = props;
+    const {product, onAddToCart} = props;
     if (!product?.name) return null;
 
     return (
         <div className="py-1">
-            <Row className="fs-5 gx-0">
+            <Row className="fs-5 gx-0 align-items-center">
                 <Col>
                     {product.name}
                     <ProductSize product={product}/>
@@ -16,6 +16,15 @@ export function MenuProduct(props) {
                     {product.price.toFixed(2)} &euro;
                 </Col>
 
+                <Col xs="auto" className="ms-3">
+                    <Button
+                        variant="outline-primary"
+                        size="sm"
+                        onClick={() => onAddToCart(product)}
+                    >
+                        +
+                    </Button>
+                </Col>
             </Row>
             <ProductNote product={product}/>
         </div>
