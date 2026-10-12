@@ -123,6 +123,10 @@ export function ShoppingCart(props) {
     function handleModifyCart(newCart) {
         setCart(newCart);
     }
+    function handlePayment(){
+        setCart([]);
+        setShow(false);
+    }
 
     return (
         <>
@@ -150,7 +154,7 @@ export function ShoppingCart(props) {
                     <SecondaryButton onClick={handleClose}>
                         Sluiten
                     </SecondaryButton>
-                    <PrimaryButton>naar  betalen</PrimaryButton>
+                    <PrimaryButton onClick={handlePayment}>naar  betalen</PrimaryButton>
                 </Modal.Footer>
             </Modal>
         </>
