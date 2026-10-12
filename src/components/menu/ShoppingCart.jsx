@@ -1,46 +1,156 @@
+
 import {useState} from "react";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Modal, Form} from "react-bootstrap";
+import {PrimaryButton, SecondaryButton} from "../common/Buttons.jsx";
+
+function EditableOrderLineSummary(props) {
+    const {items, products, onModifyCart} = props;
+
+    if (items.length === 0) {
+        return <EmptyOrderMessage />;
+    }
+
+    return (
+        <>
+            {items.map(item => (
+                <EditableOrderItemRow
+                    key={item.productId}
+                    item={item}
+                    products={products}
+                    onModifyCart={onModifyCart}
+                    items={items}
+                />
+            ))}
+
+            <hr />
+
+            <OrderTotalSummary
+                items={items}
+                products={products}
+            />
+        </>
+    );
+}
+
+
+export function EmptyOrderMessage() {
+    return (
+        <p className="text-center my-3">
+            Nog niets besteld
+        </p>
+    );
+}
+
+function EditableOrderItemRow(props) {
+    const {item, items, products, onModifyCart} = props;
+
+    const product = products.find(
+        product => product.id === item.productId
+    );
+
+    if (!product) {
+        return null;
+    }
+
+    function handleAmountChange(event) {
+        const newAmount = Number(event.target.value);
+
+        const newItems = items
+            .map(orderItem =>
+                orderItem.productId === item.productId
+                    ? {...orderItem, amount: newAmount}
+                    : orderItem
+            )
+            .filter(orderItem => orderItem.amount > 0);
+
+        onModifyCart(newItems);
+    }
+
+    return (
+        <div className="my-2">
+            <div className="d-flex justify-content-between align-items-center">
+                <strong>{product.name}</strong>
+
+                <Form.Control
+                    type="number"
+                    min="0"
+                    value={item.amount}
+                    onChange={handleAmountChange}
+                    className="w-25"
+                />
+            </div>
+
+            <div>{product.price}€ per stuk</div>
+
+            <div>
+                Subtotaal: {(item.amount * product.price).toFixed(2)}€
+            </div>
+        </div>
+    );
+}
+
+function OrderTotalSummary(props) {
+    const {items, products} = props;
+
+    const totalPrice = items.reduce((total, item) => {
+        const product = products.find(
+            product => product.id === item.productId
+        );
+
+        return total + (product ? product.price * item.amount : 0);
+    }, 0);
+
+    return (
+        <div className="d-flex justify-content-between border-top pt-3 mt-3">
+            <strong>Totaal:</strong>
+            <strong>{totalPrice.toFixed(2)}€</strong>
+        </div>
+    );
+}
 
 export function ShoppingCart(props) {
-    const {cart} = props;
+    const {cart, setCart, products} = props;
     const [show, setShow] = useState(false);
-
-    // Derived state: gewone const, geen useState
-    const totalAmount = cart.reduce((total, orderLine) => total + orderLine.amount, 0);
-
-    function handleShow() {
-        setShow(true);
-    }
 
     function handleClose() {
         setShow(false);
     }
 
+    function handleShow() {
+        setShow(true);
+    }
+
+    function handleModifyCart(newCart) {
+        setCart(newCart);
+    }
+
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                {totalAmount}
+            <Button variant="outline-primary" onClick={handleShow}>
+                {cart.reduce(
+                (total, item) => total + item.amount,
+                0
+            )}
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Winkelmandje</Modal.Title>
                 </Modal.Header>
+
                 <Modal.Body>
-                    {cart.length === 0 && <p className="text-muted mb-0">Je winkelmandje is leeg.</p>}
-                    {cart.map(orderLine => (
-                        <div key={orderLine.id}>
-                            {orderLine.name}: {orderLine.amount}x
-                        </div>
-                    ))}
+                    <EditableOrderLineSummary
+                        items={cart}
+                        products={products}
+                        onModifyCart={handleModifyCart}
+                    />
                 </Modal.Body>
+
                 <Modal.Footer>
-                    <Button variant="outline-secondary" onClick={handleClose}>
+                    <SecondaryButton onClick={handleClose}>
                         Sluiten
-                    </Button>
-                    <Button variant="primary">
-                        Naar betalen
-                    </Button>
+                    </SecondaryButton>
+                    <PrimaryButton>naar  betalen</PrimaryButton>
                 </Modal.Footer>
             </Modal>
         </>

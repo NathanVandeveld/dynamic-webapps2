@@ -28,3 +28,11 @@ export function PrimaryButton(props) {
         </Button>
     );
 }
+export function SecondaryButton(props) {
+    const {onClick, children} = props;
+    return (
+        <Button variant="secondary" onClick={onClick}>
+            {children}
+        </Button>
+    )
+}

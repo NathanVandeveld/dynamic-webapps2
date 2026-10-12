@@ -5,34 +5,43 @@ import {ShoppingCart} from "./ShoppingCart.jsx";
 
 export function MenuCard(props) {
     const {products} = props;
-    // Tijdelijk een paar orderLines om uit te proberen, later terug []
     const [cart, setCart] = useState([]);
 
     function handleAddToCart(product) {
         setCart(prevCart => {
-            const existingLine = prevCart.find(line => line.id === product.id);
+            const existingLine = prevCart.find(
+                line => line.productId === product.id
+            );
 
             if (existingLine) {
                 return prevCart.map(line =>
-                    line.id === product.id
+                    line.productId === product.id
                         ? {...line, amount: line.amount + 1}
                         : line
                 );
             }
 
-            return [...prevCart, {id: product.id, amount: 1}];
+            return [
+                ...prevCart,
+                {productId: product.id, amount: 1}
+            ];
         });
     }
 
-    console.table(cart);
-
     return (
-        <Card className="shadow mx-auto my-4" style={{maxWidth: "700px"}}>
+        <Card className="shadow mx-auto my-4"
+              style={{maxWidth: "700px"}}>
             <Card.Body className="px-4 pb-5">
                 <Container className="sticky-top bg-white d-flex justify-content-between align-items-center py-2">
                     <h1 className="card-title mb-0">Menu</h1>
-                    <ShoppingCart cart={cart}/>
+
+                    <ShoppingCart
+                        cart={cart}
+                        setCart={setCart}
+                        products={products}
+                    />
                 </Container>
+
                 {products.map(product => (
                     <MenuProduct
                         key={product.id}
