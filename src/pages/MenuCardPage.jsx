@@ -1,5 +1,5 @@
 import {Container} from "react-bootstrap";
-import {MenuCard} from "../components/MenuCard.jsx";
+import {MenuCard} from "../components/menu/MenuCard.jsx";
 import {PRODUCTS_DATA} from "../data/data.jsx";
 
 export function MenuCardPage() {
