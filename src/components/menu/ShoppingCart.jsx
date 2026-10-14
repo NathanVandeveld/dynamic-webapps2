@@ -1,7 +1,8 @@
 
 import {useState} from "react";
-import {Button, Modal, Form} from "react-bootstrap";
+import {Modal, Form} from "react-bootstrap";
 import {PrimaryButton, SecondaryButton} from "../common/Buttons.jsx";
+import {BsCart} from "react-icons/bs";
 
 function EditableOrderLineSummary(props) {
     const {items, products, onModifyCart} = props;
@@ -112,6 +113,9 @@ export function ShoppingCart(props) {
     const {cart, setCart, products} = props;
     const [show, setShow] = useState(false);
 
+    // Derived state: gewone const, geen useState
+    const totalAmount = cart.reduce((total, orderLine) => total + orderLine.amount, 0);
+
     function handleClose() {
         setShow(false);
     }
@@ -130,12 +134,9 @@ export function ShoppingCart(props) {
 
     return (
         <>
-            <Button variant="outline-primary" onClick={handleShow}>
-                {cart.reduce(
-                (total, item) => total + item.amount,
-                0
-            )}
-            </Button>
+            <PrimaryButton onClick={handleShow}>
+                <BsCart/> {totalAmount}
+            </PrimaryButton>
 
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>

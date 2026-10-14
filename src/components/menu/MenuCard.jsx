@@ -28,10 +28,10 @@ export function MenuCard(props) {
             <Card.Body className="px-4 pb-5">
                 <Container className="sticky-top bg-white d-flex justify-content-between align-items-center py-2">
                     <h1 className="card-title mb-0">Menu</h1>
-                    <ShoppingCart cart={cart} setCart={setCart} products={products}/>
+                    <ShoppingCart cart={cart} products={products}/>
                 </Container>
 
-                <MenuCategoryList products={products} onAddToCart={handleAddToCart}/>
+                <MenuCategoryList products={products} cart={cart} onAddToCart={handleAddToCart}/>
             </Card.Body>
         </Card>
     );

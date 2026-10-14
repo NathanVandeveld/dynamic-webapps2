@@ -1,7 +1,9 @@
-import {Row, Col, Button} from "react-bootstrap";
+import {Row, Col, Badge} from "react-bootstrap";
+import {BsCartPlus} from "react-icons/bs";
+import {OutlineButton} from "../common/Buttons.jsx";
 
 export function MenuProduct(props) {
-    const {product, onAddToCart} = props;
+    const {product, amountOrdered, onAddToCart} = props;
     if (!product?.name) return null;
 
     return (
@@ -17,17 +19,33 @@ export function MenuProduct(props) {
                 </Col>
 
                 <Col xs="auto" className="ms-3">
-                    <Button
-                        variant="outline-primary"
-                        size="sm"
+                    {/* position-relative: nodig voor de absolute Badge */}
+                    <OutlineButton
+                        className="position-relative"
                         onClick={() => onAddToCart(product)}
                     >
-                        +
-                    </Button>
+                        <BsCartPlus/>
+                        <ProductAmountOrdered amountOrdered={amountOrdered}/>
+                    </OutlineButton>
                 </Col>
             </Row>
             <ProductNote product={product}/>
         </div>
+    );
+}
+
+function ProductAmountOrdered(props) {
+    const {amountOrdered} = props;
+    if (!amountOrdered) return null;
+
+    return (
+        <Badge
+            pill
+            bg="danger"
+            className="position-absolute top-0 start-100 translate-middle"
+        >
+            {amountOrdered}
+        </Badge>
     );
 }
 

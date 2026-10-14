@@ -1,9 +1,14 @@
 import {Button} from "react-bootstrap";
+import {BsChevronDown, BsChevronUp} from "react-icons/bs";
 
 export function OutlineButton(props) {
-    const {onClick, children} = props;
+    const {onClick, className = "", children} = props;
     return (
-        <Button variant="outline-secondary me-2" onClick={onClick}>
+        <Button
+            variant="outline-secondary"
+            className={`me-2 ${className}`}
+            onClick={onClick}
+        >
             {children}
         </Button>
     );
@@ -12,14 +17,17 @@ export function OutlineButton(props) {
 export function ToggleButton(props) {
     const {isActive, onToggle} = props;
     return (
-        <Button variant="secondary"
-                size="sm"
-                aria-expanded={isActive}
-                onClick={() => onToggle(!isActive)}>
-            {isActive ? "-" : "+"}
+        <Button
+            variant={isActive ? "secondary" : "primary"}
+            size="sm"
+            aria-expanded={isActive}
+            onClick={() => onToggle(!isActive)}
+        >
+            {isActive ? <BsChevronUp/> : <BsChevronDown/>}
         </Button>
     );
 }
+
 export function PrimaryButton(props) {
     const {onClick, children} = props;
     return (
@@ -28,11 +36,12 @@ export function PrimaryButton(props) {
         </Button>
     );
 }
+
 export function SecondaryButton(props) {
     const {onClick, children} = props;
     return (
         <Button variant="secondary" onClick={onClick}>
             {children}
         </Button>
-    )
+    );
 }
