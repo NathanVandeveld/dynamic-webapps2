@@ -1,11 +1,10 @@
 import {useState} from "react";
-import {Dropdown} from "react-bootstrap";
+import {Dropdown, Form} from "react-bootstrap";
 
 import {OutlineButton} from "../components/common/Buttons.jsx";
 import {PERSON_WITH_PROPS_DATA} from "../data/data.jsx";
 import {Persons} from "../components/exercises/Persons.jsx";
 
-// Constanten voor de sorteeropties
 const SORT_NONE = "none";
 const SORT_SCORE_ASC = "scoreAsc";
 const SORT_SCORE_DESC = "scoreDesc";
@@ -22,6 +21,7 @@ const COMPARE_FUNCTIONS = {
 export function PersonsWithInteractionsPage() {
     const [showDetails, setShowDetails] = useState(false);
     const [sortOption, setSortOption] = useState(SORT_NONE);
+    const [nameFilter, setNameFilter] = useState("");
 
     function handleToggleDetails() {
         setShowDetails(prevShow => !prevShow);
@@ -31,14 +31,21 @@ export function PersonsWithInteractionsPage() {
         setSortOption(eventKey);
     }
 
-    const sortedPersons = [...PERSON_WITH_PROPS_DATA];
+    function handleChangeNameFilter(event) {
+        setNameFilter(event.target.value);
+    }
+    const filteredPersons = PERSON_WITH_PROPS_DATA.filter(person =>
+        person.name.toLowerCase().includes(nameFilter.toLowerCase())
+    );
+
+    const sortedPersons = [...filteredPersons];
     if (sortOption !== SORT_NONE) {
         sortedPersons.sort(COMPARE_FUNCTIONS[sortOption]);
     }
 
     return (
         <div className="mx-3">
-            <div className="my-3 d-flex align-items-center">
+            <div className="my-3 d-flex align-items-center gap-3">
                 <OutlineButton onClick={handleToggleDetails}>
                     {showDetails ? "verberg details" : "toon details"}
                 </OutlineButton>
@@ -57,6 +64,15 @@ export function PersonsWithInteractionsPage() {
                         <Dropdown.Item eventKey={SORT_NONE}>geen sortering</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+
+                <Form.Group controlId="nameFilter" className="d-flex align-items-center gap-2">
+                    <Form.Label className="mb-0 text-nowrap">naam bevat</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={nameFilter}
+                        onChange={handleChangeNameFilter}
+                    />
+                </Form.Group>
             </div>
 
             <Persons
