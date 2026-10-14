@@ -1,6 +1,6 @@
 import {Section} from "../components/common/Section.jsx";
 import {Col, Row} from "react-bootstrap";
-import {SectionCard} from "../components/common/SectionCard.jsx";
+import {Picture} from "../components/pictures/Picture.jsx";
 
 const ARTWORKS = [
     {
@@ -108,24 +108,16 @@ return (
 );
 }
 function Pictures(props) {
-const {artworks, title} = props;
-return (
-    <Section title={title} isInitiallyOpen>
-        <Row xs={1} sm={2} lg={3} className="g-3">
-            {artworks.map( artwork => (
-                <Col key={artwork.id}>
-                    <SectionCard>
-                        <img
-                            src={`/images/${artwork.name}`}
-                            alt={artwork.title}
-                            width="100%"
-                        />
-                        <h5 className="mt-3">{artwork.title}</h5>
-                        <p className="text-muted mb-1">by {artwork.author}</p>
-                    </SectionCard>
-                </Col>
+    const {artworks, title} = props;
+    return (
+        <Section title={title} isInitiallyOpen>
+            <Row xs={1} sm={2} lg={3} className="g-3">
+                {artworks.map(artwork => (
+                    <Col key={artwork.id}>
+                        <Picture artwork={artwork}/>
+                    </Col>
                 ))}
-        </Row>
-    </Section>
-);
+            </Row>
+        </Section>
+    );
 }
