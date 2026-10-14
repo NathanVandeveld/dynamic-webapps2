@@ -5,7 +5,7 @@ import {
     NAV_STATE,
     NAV_SYNTHETIC_EVENT,
     NAV_INPUT,
-    NAV_PERSONS_SEARCH, NAV_NUMBERS_PLAIN, NAV_PICTURES, NAV_CARS, NAV_NUMBERS_FAV_MULTIPLE
+    NAV_PERSONS_SEARCH, NAV_NUMBERS_PLAIN, NAV_PICTURES, NAV_CARS, NAV_NUMBERS_FAV_MULTIPLE, NAV_PERSONS_WITH_BUTTONS
 } from "./navConstants.js";
 
 export const RENDER_DATA_EXERCISES = [
@@ -19,11 +19,15 @@ export const RENDER_DATA_EXERCISES = [
 ];
 export const STATE_EVENTS_EXERCISES = [
     {key: NAV_STATE, title: "State", description: "Oefenen met useState en events"},
-    {key:NAV_SYNTHETIC_EVENT, title: "Synthetic event", description: "onclick en clientX/clientY uit het synthetic event"},
-    {key:NAV_NUMBERS_FAV_MULTIPLE,title:"Meerdere favoriete getallen", description: "beheren van meerdere favorieten"}
+    {key:NAV_SYNTHETIC_EVENT, title: "Synthetic event", description: "onclick en clientX/clientY uit het synthetic event"}
+
 
 ];
 export const INPUT_EXERCISES = [
     {key:NAV_INPUT, title:"Invoer demo", description: "Formulieren en inputafhandeling"},
     {key:NAV_PERSONS_SEARCH, title:"Zoeken in personen", description: "zoeken en filteren in personen"}
+];
+export const ADVANCED_EXERCISES = [
+    {key:NAV_NUMBERS_FAV_MULTIPLE,title:"Meerdere favoriete getallen", description: "beheren van meerdere favorieten"},
+    {key:NAV_PERSONS_WITH_BUTTONS, title:"Personen Interactief", description: "Personen met interactieve knoppen"}
 ];

@@ -1,5 +1,10 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import {INPUT_EXERCISES, RENDER_DATA_EXERCISES, STATE_EVENTS_EXERCISES} from "../constants/exercisesConstants.js";
+import {
+    ADVANCED_EXERCISES,
+    INPUT_EXERCISES,
+    RENDER_DATA_EXERCISES,
+    STATE_EVENTS_EXERCISES
+} from "../constants/exercisesConstants.js";
 
 import {SectionCard} from "../components/common/SectionCard.jsx";
 import {Section} from "../components/common/Section.jsx";
@@ -70,6 +75,7 @@ export function ExercisesPage(props) {
                 title="Renderen van data"
                 exercises={RENDER_DATA_EXERCISES}
                 onSelectExercise={onSelectExercise}
+                isInitiallyOpen
             />
             <ExerciseSection
                 title="State & Events"
@@ -80,7 +86,12 @@ export function ExercisesPage(props) {
                 title="Input"
                 exercises={INPUT_EXERCISES}
                 onSelectExercise={onSelectExercise}
-                isInitiallyOpen/>
+                />
+            <ExerciseSection
+                title="geavanceerde oefeningen"
+                exercises={ADVANCED_EXERCISES}
+                onSelectExercise={onSelectExercise}
+            />
         </Container>
     );
 }

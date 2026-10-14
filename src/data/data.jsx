@@ -1,3 +1,5 @@
+import {subDays} from "date-fns";
+
 export const PRODUCTS_DATA = [
     {id: 1, name: "cola", price: 2.50, category: "frisdrank", categoryId: 1, categoryOrder: 10},
     {id: 2, name: "water", price: 2.20, note: "plat of bruisend", category: "frisdrank", categoryId: 1, categoryOrder: 10},
@@ -145,5 +147,227 @@ export const CAR_DATA = [
         color: "blauw",
         year: 2022,
         note: "stil, snel en futuristisch"
+    }
+];
+export const PERSON_WITH_PROPS_DATA = [
+    {
+        id: 1,
+        name: "Jan Peeters",
+        score: 28,
+        city: "Mechelen",
+        role: "staff",
+        function: "Chef-kok",
+        skills: ["Franse Keuken", "HACCP", "Menu Design"],
+        hobbies: ["koken", "wijnproeven", "wandelen"],
+        registeredAt: subDays(new Date(), 1)
+    },
+    {
+        id: 2,
+        name: "Marie Janssens",
+        score: 25,
+        city: "Antwerpen",
+        role: "staff",
+        function: "Zaalverantwoordelijke",
+        skills: ["Klantenservice", "Planning", "Sommelier"],
+        hobbies: ["yoga", "lezen", "koken"],
+        registeredAt: subDays(new Date(), 5)
+    },
+    {
+        id: 3,
+        name: "Ahmed El Amrani",
+        score: 22,
+        city: "Mechelen",
+        role: "staff",
+        function: "Sous-chef",
+        skills: ["Grill", "Pastry"],
+        hobbies: ["basketbal", "muziek"],
+        registeredAt: subDays(new Date(), 10)
+    },
+    {
+        id: 4,
+        name: "Yves Wouters",
+        score: 24,
+        city: "Antwerpen",
+        role: "staff",
+        function: "Ober",
+        skills: ["Kassa", "Zaalbediening"],
+        hobbies: ["fitness", "zwemmen", "films"],
+        registeredAt: subDays(new Date(), 15)
+    },
+    {
+        id: 5,
+        name: "Marijke Jacobs",
+        score: 26,
+        city: "Duffel",
+        role: "staff",
+        function: "Barista & Patissier",
+        skills: ["Latte Art", "Desserts"],
+        hobbies: ["tekenen", "schilderen"],
+        registeredAt: subDays(new Date(), 20)
+    },
+    {
+        id: 6,
+        name: "Furkan Yilmaz",
+        score: 23,
+        city: "Mechelen",
+        role: "staff",
+        function: "Catering Chauffeur",
+        skills: ["Rijbewijs C", "Logistiek"],
+        hobbies: ["voetbal", "kickboksen"],
+        registeredAt: subDays(new Date(), 25)
+    },
+    {
+        id: 7,
+        name: "Bart Maes",
+        score: 32,
+        city: "Antwerpen",
+        role: "staff",
+        function: "Sommelier",
+        skills: ["Wijnkennis", "Voorraadbeheer"],
+        hobbies: ["gitaar", "schaken"],
+        registeredAt: subDays(new Date(), 30)
+    },
+    {
+        id: 8,
+        name: "Marijke Mertens",
+        score: 28,
+        city: "Lier",
+        role: "staff",
+        function: "Manager",
+        skills: ["HR", "Financiën"],
+        hobbies: ["wandelen", "reizen"],
+        registeredAt: subDays(new Date(), 40)
+    },
+    {
+        id: 9,
+        name: "Dirk Claes",
+        score: 45,
+        city: "Mechelen",
+        role: "customer",
+        function: "Vaste Gast",
+        skills: ["Fijnproever"],
+        hobbies: ["fietsen", "films"],
+        registeredAt: subDays(new Date(), 50)
+    },
+    {
+        id: 10,
+        name: "Layla Goossens",
+        score: 29,
+        city: "Lint",
+        role: "staff",
+        function: "Event Coördinator",
+        skills: ["Catering Events", "Design"],
+        hobbies: ["dans", "koken"],
+        registeredAt: subDays(new Date(), 60)
+    },
+    {
+        id: 11,
+        name: "Kris De Smet",
+        score: 27,
+        city: "Antwerpen",
+        role: "staff",
+        function: "Keukenhulp",
+        skills: ["Mise-en-place"],
+        hobbies: ["fitness", "muziek"],
+        registeredAt: subDays(new Date(), 70)
+    },
+    {
+        id: 12,
+        name: "Leen Hermans",
+        score: 31,
+        city: "Katelijne",
+        role: "staff",
+        function: "Boekhouder",
+        skills: ["Administratie", "Excel"],
+        hobbies: ["bakken", "lezen"],
+        registeredAt: subDays(new Date(), 80)
+    },
+    {
+        id: 13,
+        name: "Lieve Van Damme",
+        score: 34,
+        city: "Mechelen",
+        role: "staff",
+        function: "Social Media",
+        skills: ["Fotografie", "Marketing"],
+        hobbies: ["fotografie", "fietsen"],
+        registeredAt: subDays(new Date(), 90)
+    },
+    {
+        id: 14,
+        name: "Charlotte Wouters",
+        score: 31,
+        city: "Antwerpen",
+        role: "customer",
+        function: "Fijnproever",
+        skills: ["Culinaire Reizen"],
+        hobbies: ["lezen", "reizen"],
+        registeredAt: subDays(new Date(), 95)
+    },
+    {
+        id: 15,
+        name: "Lucas Maes",
+        score: 42,
+        city: "Mechelen",
+        role: "customer",
+        function: "Regelmatige Bezoeker",
+        skills: ["Bierproever"],
+        hobbies: ["fietsen", "wandelen"],
+        registeredAt: subDays(new Date(), 100)
+    },
+    {
+        id: 16,
+        name: "Fatima Zahra",
+        score: 29,
+        city: "Antwerpen",
+        role: "customer",
+        function: "Zakenluncher",
+        skills: ["Netwerken"],
+        hobbies: ["tennis", "cultuur"],
+        registeredAt: subDays(new Date(), 105)
+    },
+    {
+        id: 17,
+        name: "Thomas Pauwels",
+        score: 23,
+        city: "Mechelen",
+        role: "customer",
+        function: "Student",
+        skills: ["Programmeren"],
+        hobbies: ["gamen", "muziek"],
+        registeredAt: subDays(new Date(), 110)
+    },
+    {
+        id: 18,
+        name: "Julie Hendrickx",
+        score: 38,
+        city: "Duffel",
+        role: "customer",
+        function: "Buurtbewoner",
+        skills: ["Lokale Evenementen"],
+        hobbies: ["tuinieren", "koken"],
+        registeredAt: subDays(new Date(), 115)
+    },
+    {
+        id: 19,
+        name: "Ruben Bogaerts",
+        score: 47,
+        city: "Lier",
+        role: "customer",
+        function: "Wijnliefhebber",
+        skills: ["Wijnkelder Beheer"],
+        hobbies: ["zeilen", "films"],
+        registeredAt: subDays(new Date(), 120)
+    },
+    {
+        id: 20,
+        name: "Emma Goossens",
+        score: 26,
+        city: "Kontich",
+        role: "customer",
+        function: "Weekendgast",
+        skills: ["Fotografie"],
+        hobbies: ["hardlopen", "fotografie"],
+        registeredAt: subDays(new Date(), 125)
     }
 ];
