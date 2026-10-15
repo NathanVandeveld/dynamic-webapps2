@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Alert, Button, Col, Row} from "react-bootstrap";
+import {Alert, Badge, Button, Col, Row} from "react-bootstrap";
 import {Section} from "../components/common/Section.jsx";
 
 const TRAVEL_ITEMS = ["zonnebril", "handdoek", "koffer", "sandalen",
@@ -35,25 +35,23 @@ export function TravelGamePage() {
 
         if (clickedItem !== expectedItem) {
             setIsGameOver(true);
-            setStatusMessage(`Fout! Game over. Je haalde ${sequence.length - 1} ronde(s).`);
+            setStatusMessage("Fout!");
             return;
         }
 
         const isLastInSequence = stepIndex === sequence.length - 1;
 
         if (isLastInSequence) {
-            // Nieuwe sequence: nieuw woord achteraan, opnieuw van voor af aan beginnen
             const newItem = pickRandomItem();
 
             setSequence([...sequence, newItem]);
             setStepIndex(0);
             setStatusMessage(
-                `Juist! Nieuwe ronde: klik alle ${sequence.length + 1} woorden aan in de juiste volgorde. Het nieuwe woord is '${newItem}'.`
+                `Juist! Nieuw woord: '${newItem}'. Klik nu alle ${sequence.length + 1} woorden aan, te beginnen bij het eerste.`
             );
         } else {
-            // Juist, maar de sequence is nog niet af: volgende woord
             setStepIndex(stepIndex + 1);
-            setStatusMessage(`Juist! Nog ${sequence.length - stepIndex - 1} te gaan.`);
+            setStatusMessage("Juist!");
         }
     }
 
@@ -68,31 +66,49 @@ export function TravelGamePage() {
 
     return (
         <div className="my-4">
-            <GameStatusAlert message={statusMessage} isGameOver={isGameOver} />
+            <GameStatusAlert
+                message={statusMessage}
+                sequence={sequence}
+                stepIndex={stepIndex}
+                isGameOver={isGameOver}
+            />
+
+            {isGameOver && (
+                <div className="mb-3">
+                    <Button variant="primary" onClick={handlePlayAgain}>
+                        opnieuw spelen
+                    </Button>
+                </div>
+            )}
 
             <ItemSelectionGrid
                 latestItem={latestItem}
                 onItemClick={handleItemClick}
                 disabled={isGameOver}
             />
-
-            {isGameOver && (
-                <div className="text-center mt-3">
-                    <Button variant="primary" onClick={handlePlayAgain}>
-                        Opnieuw spelen
-                    </Button>
-                </div>
-            )}
         </div>
     );
 }
 
 function GameStatusAlert(props) {
-    const {message, isGameOver} = props;
+    const {message, sequence, stepIndex, isGameOver} = props;
 
     return (
-        <Alert variant={isGameOver ? "danger" : "primary"}>
-            {message}
+        <Alert
+            variant={isGameOver ? "danger" : "primary"}
+            className="position-relative"
+        >
+            <div>{message}</div>
+
+            {isGameOver && <div>{sequence.join(", ")}</div>}
+
+            <Badge
+                bg="primary"
+                pill
+                className="position-absolute bottom-0 end-0 m-2"
+            >
+                {stepIndex + 1}/{sequence.length}
+            </Badge>
         </Alert>
     );
 }
