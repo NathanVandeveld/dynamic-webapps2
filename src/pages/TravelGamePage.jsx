@@ -11,12 +11,15 @@ function pickRandomItem() {
     const randomIndex = Math.floor(Math.random() * TRAVEL_ITEMS.length);
     return TRAVEL_ITEMS[randomIndex];
 }
+function createStartMessage(item){
+    return `De computer koos '${item}'. Klik op '${item}' om te starten!`
+}
 
 export function TravelGamePage() {
     const [sequence, setSequence] = useState(() => [pickRandomItem()]);
     const [isGameOver, setIsGameOver] = useState(false);
     const [statusMessage, setStatusMessage] = useState(
-        () => `De computer koos '${sequence[0]}'. Klik op '${sequence[0]}' om te starten!`
+        () =>createStartMessage(sequence[0])
     );
 
     const latestItem = sequence[sequence.length - 1];
@@ -27,22 +30,35 @@ export function TravelGamePage() {
         }
 
         if (clickedItem === latestItem) {
-            setStatusMessage("Juist! (vervang door jouw tekst)");
+            setStatusMessage("Juist!");
         } else {
             setIsGameOver(true);
-            setStatusMessage("Fout! Game over. (vervang door jouw tekst)");
+            setStatusMessage("Fout! Game over.");
         }
+    }
+    function handlePlayAgain() {
+        const newItem = pickRandomItem();
+        setSequence([newItem]);
+        setIsGameOver(false);
+        setStatusMessage(createStartMessage(newItem));
     }
 
     return (
         <div className="my-4">
             <GameStatusAlert message={statusMessage} isGameOver={isGameOver} />
-
+            {isGameOver && (
+                <div className="text-center mt-3">
+                    <Button variant="primary" onClick={handlePlayAgain}>
+                        Opnieuw spelen
+                    </Button>
+                </div>
+            )}
             <ItemSelectionGrid
                 latestItem={latestItem}
                 onItemClick={handleItemClick}
                 disabled={isGameOver}
             />
+
         </div>
     );
 }
