@@ -113,7 +113,6 @@ export function ShoppingCart(props) {
     const {cart, setCart, products} = props;
     const [show, setShow] = useState(false);
 
-    // Derived state: gewone const, geen useState
     const totalAmount = cart.reduce((total, orderLine) => total + orderLine.amount, 0);
 
     function handleClose() {

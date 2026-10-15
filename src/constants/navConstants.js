@@ -11,3 +11,4 @@ export const NAV_PICTURES = "artworks";
 export const NAV_CARS = "cars";
 export const NAV_NUMBERS_FAV_MULTIPLE = "numFavorites";
 export const NAV_PERSONS_WITH_BUTTONS = "interactievePersonen";
+export const NAV_TRAVEL_ITEMS = "travelItems";

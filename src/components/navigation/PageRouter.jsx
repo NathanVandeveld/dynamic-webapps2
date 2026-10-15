@@ -10,7 +10,7 @@ import {
     NAV_PERSONS,
     NAV_PERSONS_SEARCH, NAV_PERSONS_WITH_BUTTONS, NAV_PICTURES,
     NAV_STATE,
-    NAV_SYNTHETIC_EVENT
+    NAV_SYNTHETIC_EVENT, NAV_TRAVEL_ITEMS
 } from "../../constants/navConstants.js";
 import {StatePage} from "../../pages/StatePage.jsx";
 import {EventPage} from "../../pages/EventPage.jsx";
@@ -22,6 +22,7 @@ import {PicturesPage} from "../../pages/PicturesPage.jsx";
 import {CarsPage} from "../../pages/CarsPage.jsx";
 import {MultipleFavoriteNumbersPage} from "../../pages/MultipleFavoriteNumbersPage.jsx";
 import {PersonsWithInteractionsPage} from "../../pages/PersonsWithInteractionsPage.jsx";
+import {TravelGamePage} from "../../pages/TravelGamePage.jsx";
 
 export function PageRouter(props) {
     const {activeNavBarItem, onSelectNavBarItem} = props;
@@ -52,7 +53,9 @@ export function PageRouter(props) {
         case NAV_NUMBERS_FAV_MULTIPLE:
             return <MultipleFavoriteNumbersPage/>;
         case NAV_PERSONS_WITH_BUTTONS:
-            return <PersonsWithInteractionsPage/>
+            return <PersonsWithInteractionsPage/>;
+        case NAV_TRAVEL_ITEMS:
+            return <TravelGamePage/>
         default:
             return <ExercisesPage onSelectExercise={onSelectNavBarItem}/>;
     }
