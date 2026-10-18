@@ -35,7 +35,7 @@ export function TravelGamePage() {
 
         if (clickedItem !== expectedItem) {
             setIsGameOver(true);
-            setStatusMessage("Fout!");
+            setStatusMessage("Fout! Try again");
             return;
         }
 
