@@ -22,6 +22,8 @@ export function PersonsWithInteractionsPage() {
     const [showDetails, setShowDetails] = useState(false);
     const [sortOption, setSortOption] = useState(SORT_NONE);
     const [nameFilter, setNameFilter] = useState("");
+    const [minScore, setMinScore] = useState("");
+    const [maxScore, setMaxScore] = useState("");
 
     function handleToggleDetails() {
         setShowDetails(prevShow => !prevShow);
@@ -34,8 +36,22 @@ export function PersonsWithInteractionsPage() {
     function handleChangeNameFilter(event) {
         setNameFilter(event.target.value);
     }
+
+    function handleChangeMinScore(event) {
+        setMinScore(event.target.value);
+    }
+
+    function handleChangeMaxScore(event) {
+        setMaxScore(event.target.value);
+    }
+
+    const min = minScore === "" ? null : Number(minScore);
+    const max = maxScore === "" ? null : Number(maxScore);
+
     const filteredPersons = PERSON_WITH_PROPS_DATA.filter(person =>
         person.name.toLowerCase().includes(nameFilter.toLowerCase())
+        && (min === null || Number(person.score) > min)
+        && (max === null || Number(person.score) < max)
     );
 
     const sortedPersons = [...filteredPersons];
@@ -73,7 +89,29 @@ export function PersonsWithInteractionsPage() {
                         onChange={handleChangeNameFilter}
                     />
                 </Form.Group>
+
+                <Form.Group controlId="minScore" className="d-flex align-items-center gap-2">
+                    <Form.Label className="mb-0 text-nowrap">score groter dan</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={minScore}
+                        onChange={handleChangeMinScore}
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="maxScore" className="d-flex align-items-center gap-2">
+                    <Form.Label className="mb-0 text-nowrap">score kleiner dan</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={maxScore}
+                        onChange={handleChangeMaxScore}
+                    />
+                </Form.Group>
             </div>
+
+            {sortedPersons.length === 0 && (
+                <p className="text-center my-3">Geen personen gevonden</p>
+            )}
 
             <Persons
                 persons={sortedPersons}
