@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Dropdown, Form} from "react-bootstrap";
 
 import {OutlineButton} from "../components/common/Buttons.jsx";
@@ -10,6 +10,16 @@ const SORT_SCORE_ASC = "scoreAsc";
 const SORT_SCORE_DESC = "scoreDesc";
 const SORT_NAME_ASC = "nameAsc";
 const SORT_NAME_DESC = "nameDesc";
+
+const HOBBIES_LABEL = "Hobby's:";
+const HIGHLIGHT_NAME = "hobby-match";
+
+const HIGHLIGHT_CSS = `
+    ::highlight(${HIGHLIGHT_NAME}) {
+        background-color: yellow;
+        color: black;
+    }
+`;
 
 const COMPARE_FUNCTIONS = {
     [SORT_SCORE_ASC]: (a, b) => a.score - b.score,
@@ -25,6 +35,7 @@ export function PersonsWithInteractionsPage() {
     const [hobbyFilter, setHobbyFilter] = useState("");
     const [minScore, setMinScore] = useState("");
     const [maxScore, setMaxScore] = useState("");
+    const personsContainerRef = useRef(null);
 
     function handleToggleDetails() {
         setShowDetails(prevShow => !prevShow);
@@ -71,8 +82,57 @@ export function PersonsWithInteractionsPage() {
         sortedPersons.sort(COMPARE_FUNCTIONS[sortOption]);
     }
 
+    // Markeer de zoektekst in de hobbies van de getoonde personen,
+    // zonder Persons.jsx aan te passen (CSS Custom Highlight API).
+    // Draait na elke render, zodat de markering ook klopt na andere filters of sortering.
+    useEffect(() => {
+        // Niet elke browser ondersteunt dit: dan gewoon niets markeren
+        if (!window.CSS?.highlights || typeof window.Highlight === "undefined") {
+            return;
+        }
+
+        window.CSS.highlights.delete(HIGHLIGHT_NAME);
+
+        const container = personsContainerRef.current;
+        if (!container || !showDetails || hobbyFilter === "") {
+            return;
+        }
+
+        const lowerFilter = hobbyFilter.toLowerCase();
+        const ranges = [];
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+
+        let node = walker.nextNode();
+        while (node) {
+            const isLabelNode = node.textContent.startsWith(HOBBIES_LABEL);
+            const isInHobbiesLine = node.parentElement?.textContent.startsWith(HOBBIES_LABEL);
+
+            // Alleen de hobbies zelf doorzoeken, niet het label "Hobby's:"
+            if (isInHobbiesLine && !isLabelNode) {
+                const lowerText = node.textContent.toLowerCase();
+                let index = lowerText.indexOf(lowerFilter);
+
+                while (index !== -1) {
+                    const range = document.createRange();
+                    range.setStart(node, index);
+                    range.setEnd(node, index + hobbyFilter.length);
+                    ranges.push(range);
+                    index = lowerText.indexOf(lowerFilter, index + hobbyFilter.length);
+                }
+            }
+
+            node = walker.nextNode();
+        }
+
+        window.CSS.highlights.set(HIGHLIGHT_NAME, new window.Highlight(...ranges));
+
+        return () => window.CSS.highlights.delete(HIGHLIGHT_NAME);
+    });
+
     return (
         <div className="mx-3">
+            <style>{HIGHLIGHT_CSS}</style>
+
             <div className="my-3 d-flex align-items-center gap-3">
                 <OutlineButton onClick={handleToggleDetails}>
                     {showDetails ? "verberg details" : "toon details"}
@@ -134,12 +194,14 @@ export function PersonsWithInteractionsPage() {
                 <p className="text-center my-3">Geen personen gevonden</p>
             )}
 
-            <Persons
-                persons={sortedPersons}
-                title="personen"
-                isInitiallyOpen
-                showDetails={showDetails}
-            />
+            <div ref={personsContainerRef}>
+                <Persons
+                    persons={sortedPersons}
+                    title="personen"
+                    isInitiallyOpen
+                    showDetails={showDetails}
+                />
+            </div>
         </div>
     );
 }
