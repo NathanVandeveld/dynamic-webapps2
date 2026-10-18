@@ -22,6 +22,7 @@ export function PersonsWithInteractionsPage() {
     const [showDetails, setShowDetails] = useState(false);
     const [sortOption, setSortOption] = useState(SORT_NONE);
     const [nameFilter, setNameFilter] = useState("");
+    const [hobbyFilter, setHobbyFilter] = useState("");
     const [minScore, setMinScore] = useState("");
     const [maxScore, setMaxScore] = useState("");
 
@@ -37,6 +38,10 @@ export function PersonsWithInteractionsPage() {
         setNameFilter(event.target.value);
     }
 
+    function handleChangeHobbyFilter(event) {
+        setHobbyFilter(event.target.value);
+    }
+
     function handleChangeMinScore(event) {
         setMinScore(event.target.value);
     }
@@ -47,11 +52,18 @@ export function PersonsWithInteractionsPage() {
 
     const min = minScore === "" ? null : Number(minScore);
     const max = maxScore === "" ? null : Number(maxScore);
+    const lowerCaseHobbyFilter = hobbyFilter.toLowerCase();
 
     const filteredPersons = PERSON_WITH_PROPS_DATA.filter(person =>
-        person.name.toLowerCase().includes(nameFilter.toLowerCase())
-        && (min === null || Number(person.score) > min)
-        && (max === null || Number(person.score) < max)
+            person.name.toLowerCase().includes(nameFilter.toLowerCase())
+            && (min === null || Number(person.score) > min)
+            && (max === null || Number(person.score) < max)
+            && (
+                lowerCaseHobbyFilter === ""
+                || (person.hobbies ?? []).some(hobby =>
+                    hobby.toLowerCase().includes(lowerCaseHobbyFilter)
+                )
+            )
     );
 
     const sortedPersons = [...filteredPersons];
@@ -87,6 +99,15 @@ export function PersonsWithInteractionsPage() {
                         type="text"
                         value={nameFilter}
                         onChange={handleChangeNameFilter}
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="hobbyFilter" className="d-flex align-items-center gap-2">
+                    <Form.Label className="mb-0 text-nowrap">hobbies bevat</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={hobbyFilter}
+                        onChange={handleChangeHobbyFilter}
                     />
                 </Form.Group>
 
