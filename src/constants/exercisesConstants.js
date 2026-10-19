@@ -6,7 +6,7 @@ import {
     NAV_SYNTHETIC_EVENT,
     NAV_INPUT,
     NAV_PERSONS_SEARCH, NAV_NUMBERS_PLAIN, NAV_PICTURES, NAV_CARS, NAV_NUMBERS_FAV_MULTIPLE, NAV_PERSONS_WITH_BUTTONS,
-    NAV_TRAVEL_ITEMS
+    NAV_TRAVEL_ITEMS, NAV_PERSONS_DATABASE
 } from "./navConstants.js";
 
 export const RENDER_DATA_EXERCISES = [
@@ -32,4 +32,7 @@ export const ADVANCED_EXERCISES = [
     {key:NAV_NUMBERS_FAV_MULTIPLE,title:"Meerdere favoriete getallen", description: "beheren van meerdere favorieten"},
     {key:NAV_PERSONS_WITH_BUTTONS, title:"Personen Interactief", description: "Personen met interactieve knoppen"},
     {key: NAV_TRAVEL_ITEMS, title:"ik ga op reis", description: "Geheugenspel: herhaal de steeds langer wordende reeks van de computer"}
+];
+export const DATABASE_EXERCISES = [
+    {key:NAV_PERSONS_DATABASE, title:"Personen", description: "Lijst met personen uit de database"}
 ];

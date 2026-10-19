@@ -1,6 +1,6 @@
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import {
-    ADVANCED_EXERCISES,
+    ADVANCED_EXERCISES, DATABASE_EXERCISES,
     INPUT_EXERCISES,
     RENDER_DATA_EXERCISES,
     STATE_EVENTS_EXERCISES
@@ -92,6 +92,11 @@ export function ExercisesPage(props) {
                 exercises={ADVANCED_EXERCISES}
                 onSelectExercise={onSelectExercise}
             />
+            <ExerciseSection
+                title="Database"
+                exercises={DATABASE_EXERCISES}
+                onSelectExercise={onSelectExercise}
+                />
         </Container>
     );
 }
