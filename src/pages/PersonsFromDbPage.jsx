@@ -1,25 +1,33 @@
-import {usePersonsData} from "../api/personsQueries.js";
+import {usePersonsDataWhereScoreLargerThen} from "../api/personsQueries.js";
 import {Persons} from "../components/exercises/Persons.jsx";
-import {Alert, Spinner} from "react-bootstrap";
+import {Alert, Form, Spinner} from "react-bootstrap";
 import {OutlineButton} from "../components/common/Buttons.jsx";
+import {useState} from "react";
 
 export function PersonsFromDbPage() {
-    const [persons, isLoading,isError, refresh] = usePersonsData();
-    console.log("PersonsFromDbPage", persons);
-    if (isLoading) {
-        return <Spinner/>;
-    }
-    if (isError) {
-        return(
-            <div className="mx-3">
+    const [minScore, setMinScore] = useState("");
+    const scoreParam = minScore === "" ? null : Number(minScore);
+    const [persons, isLoading, isError, refresh] = usePersonsDataWhereScoreLargerThen(scoreParam);
+
+    return (
+        <div className="mx-3">
+            <div className="d-flex justify-content-between align-items-end mb-3">
+                <Form.Group controlId="minScoreInput">
+                    <Form.Label>Minimum score:</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={minScore}
+                        onChange={(e) => setMinScore(e.target.value)}
+                        placeholder="filter op score"
+                    />
+                </Form.Group>
+            </div>
+            {isLoading && <Spinner/>}
+            {isError && (
                 <Alert variant="danger">
                     Fout bij het laden van personen: {isError.message}
                 </Alert>
-            </div>
-        );
-    }
-    return (
-        <div className="mx-3">
+            )}
             <OutlineButton onClick={refresh}>Herlaad data</OutlineButton>
             <Persons persons={persons} title="Personen" isInitiallyOpen/>
         </div>

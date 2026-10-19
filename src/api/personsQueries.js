@@ -6,3 +6,10 @@ import {useCallback} from "react";
 export function usePersonsData() {
     return useNeonQuery(useCallback(() => sql`SELECT * FROM persons ORDER BY name ASC`, []));
 }
+
+export function usePersonsDataWhereScoreLargerThen(score = null) {
+    return useNeonQuery(useCallback(() => sql`SELECT *
+                                              FROM persons
+                                              WHERE (${score}::int is null or score >= ${score})
+                                              order by name asc`, [score]));
+}
