@@ -1,13 +1,14 @@
 import {Persons} from "../components/exercises/Persons.jsx";
-import {usePersonsData} from "../api/personsQueries.js";
+import {addPerson, usePersonsData} from "../api/personsQueries.js";
 import {OutlineButton} from "../components/common/Buttons.jsx";
 
 export function PersonsCrudPage() {
-    const [persons] =usePersonsData();
+    const [persons, refresh] = usePersonsData();
     console.log(persons.map(p => p.name));
 
-    function handleAddDummyPerson(){
-
+    async function handleAddDummyPerson(){
+    await addPerson({name:"DUMMY",score: 19, city:"Mechelen"});
+    refresh();
     }
     return (
         <div className="mx-3">

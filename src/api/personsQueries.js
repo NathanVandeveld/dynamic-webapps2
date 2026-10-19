@@ -13,3 +13,9 @@ export function usePersonsDataWhereScoreLargerThen(score = null) {
                                               WHERE (${score}::int is null or score >= ${score})
                                               order by name asc`, [score]));
 }
+export async function addPerson(newPerson) {
+    await sql`
+        INSERT INTO persons (name, score, city)
+        VALUES (${newPerson.name}, ${newPerson.score}, ${newPerson.city})
+    `;
+}
