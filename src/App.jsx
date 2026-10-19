@@ -6,7 +6,7 @@ import {PageRouter} from "./components/navigation/PageRouter.jsx";
 import {SandboxNavBar} from "./components/navigation/SandboxNavBar.jsx";
 import {NAV_EXERCISES} from "./constants/navConstants.js";
 import {useSessionStorage} from "@uidotdev/usehooks";
-
+import './api/neon.js';
 function App() {
     const [activeNavBarItem, setActiveNavBarItem] = useSessionStorage(NAV_EXERCISES);
 
